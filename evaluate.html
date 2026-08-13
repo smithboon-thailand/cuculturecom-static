@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แบบประเมินหลักสูตร · สื่อสารเชิงวัฒนธรรม จุฬาลงกรณ์มหาวิทยาลัย</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon-64.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: {
+    chula:{DEFAULT:'#DE5C8E',dark:'#A63A63',light:'#F5C2D5',pale:'#FDF2F6'},
+    ink:{DEFAULT:'#241C26',soft:'#5C4F60',faint:'#8B7F8E'},
+    paper:'#FBF9FA', rule:'#E8DFE4'
+  },
+  fontFamily:{display:['Prompt','sans-serif'],body:['Sarabun','sans-serif']},
+  maxWidth:{content:'44rem'}
+}}}
+</script>
+<style>
+  body{background:#FBF9FA;color:#241C26;font-family:'Sarabun',sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.font-display{font-family:'Prompt',sans-serif;line-height:1.35}
+  body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.03;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .accession{font-family:'Prompt',sans-serif;font-weight:500;font-size:.8125rem;letter-spacing:.06em;
+    border:1px solid currentColor;border-radius:2px;padding:.15rem .5rem;display:inline-block}
+  input[type=text],input[type=tel],textarea{width:100%;border:1px solid #E8DFE4;border-radius:4px;
+    padding:.7rem .9rem;font-size:16px;font-family:'Sarabun',sans-serif;background:#fff}
+  input:focus,textarea:focus{outline:none;border-color:#DE5C8E;box-shadow:0 0 0 3px rgba(222,92,142,.15)}
+
+  /* สเกลให้คะแนน */
+  .scale{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem}
+  .scale.ten{grid-template-columns:repeat(11,1fr);gap:.25rem}
+  .sc input{position:absolute;opacity:0;width:0;height:0}
+  .sc span{display:block;text-align:center;border:1px solid #E8DFE4;border-radius:4px;
+    padding:.85rem .2rem;cursor:pointer;background:#fff;transition:all .18s;
+    font-family:'Prompt',sans-serif;font-weight:600;font-size:17px}
+  .scale.ten .sc span{padding:.6rem .1rem;font-size:14px}
+  .sc input:checked + span{background:#DE5C8E;border-color:#DE5C8E;color:#fff;transform:translateY(-2px)}
+  .sc input:focus-visible + span{outline:2px solid #A63A63;outline-offset:2px}
+  .sc:hover span{border-color:#F5C2D5}
+  .anchors{display:flex;justify-content:space-between;font-size:13px;color:#8B7F8E;margin-top:.4rem}
+
+  .yn{display:flex;gap:.75rem}
+  .yn label{flex:1}
+  .yn input{position:absolute;opacity:0;width:0;height:0}
+  .yn span{display:block;text-align:center;border:1px solid #E8DFE4;border-radius:4px;padding:.7rem;
+    cursor:pointer;background:#fff;font-family:'Prompt',sans-serif;font-weight:500;transition:all .2s}
+  .yn input:checked + span{background:#DE5C8E;border-color:#DE5C8E;color:#fff}
+
+  .q{margin-bottom:2.25rem}
+  .q > .lbl{display:block;font-family:'Prompt',sans-serif;font-weight:500;font-size:16px;margin-bottom:.65rem}
+  .err{color:#C2410C;font-size:14px;margin-top:.4rem;display:none}
+  .err.on{display:block}
+  .hide{display:none}
+  :focus-visible{outline:2px solid #A63A63;outline-offset:3px;border-radius:2px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="bg-white border-b border-rule">
+  <div class="max-w-content mx-auto px-5 sm:px-8 h-16 flex items-center gap-3">
+    <img src="icon-clean.png" alt="" width="30" height="30" class="w-[30px] h-[30px] object-contain" onerror="this.style.display='none'">
+    <span class="font-display font-semibold text-[15px]">สื่อสารเชิงวัฒนธรรม</span>
+  </div>
+</header>
+
+<main class="max-w-content mx-auto px-5 sm:px-8 py-12 sm:py-16">
+
+  <div id="view-form">
+    <p class="font-display text-[11px] tracking-[.24em] text-chula-dark mb-3">แบบประเมิน</p>
+    <h1 class="font-display font-semibold text-3xl sm:text-4xl mb-4">ประเมินหลักสูตร</h1>
+    <p class="text-ink-soft text-[15px] mb-8">
+      ความเห็นของท่านมีผลต่อการพัฒนาหลักสูตรรุ่นต่อไปโดยตรง ใช้เวลาประมาณ 2 นาที
+    </p>
+
+    <div id="course-box" class="border border-chula-light bg-chula-pale rounded-sm p-6 mb-10"></div>
+
+    <div class="border border-rule rounded-sm p-5 mb-10 bg-white">
+      <p class="text-[15px] leading-relaxed text-ink-soft">
+        คำตอบของท่านจะถูกรายงานในภาพรวมเท่านั้น ไม่ระบุตัวบุคคล
+        ท่านจะระบุเบอร์โทรหรือไม่ก็ได้ การระบุช่วยให้เราเชื่อมโยงกับหลักสูตรที่ท่านเรียน
+        เพื่อพัฒนาให้ตรงกับผู้เรียนแต่ละกลุ่มได้ดีขึ้น
+      </p>
+    </div>
+
+    <form id="eval-form" novalidate>
+
+      <h2 class="font-display font-semibold text-xl mb-6">ความพึงพอใจรายด้าน</h2>
+      <div id="rating-questions"></div>
+
+      <h2 class="font-display font-semibold text-xl mt-12 mb-2">ความรู้ของท่าน</h2>
+      <p class="text-ink-faint text-sm mb-6">ประเมินตนเองตามความรู้สึกจริง ไม่มีถูกผิด</p>
+
+      <div class="q">
+        <span class="lbl">ความรู้เรื่องนี้ของท่าน <strong>ก่อน</strong> เข้าอบรม</span>
+        <div class="scale" id="s-knowBefore"></div>
+        <div class="anchors"><span>ไม่มีความรู้เลย</span><span>รู้ดีมาก</span></div>
+        <p class="err" data-for="knowBefore">กรุณาให้คะแนน</p>
+      </div>
+
+      <div class="q">
+        <span class="lbl">ความรู้เรื่องนี้ของท่าน <strong>หลัง</strong> เข้าอบรม</span>
+        <div class="scale" id="s-knowAfter"></div>
+        <div class="anchors"><span>ไม่มีความรู้เลย</span><span>รู้ดีมาก</span></div>
+        <p class="err" data-for="knowAfter">กรุณาให้คะแนน</p>
+      </div>
+
+      <h2 class="font-display font-semibold text-xl mt-12 mb-6">การแนะนำต่อ</h2>
+
+      <div class="q">
+        <span class="lbl">ท่านจะแนะนำหลักสูตรนี้ให้เพื่อนหรือคนรู้จักมากน้อยเพียงใด</span>
+        <div class="scale ten" id="s-nps"></div>
+        <div class="anchors"><span>ไม่แนะนำเลย</span><span>แนะนำแน่นอน</span></div>
+        <p class="err" data-for="nps">กรุณาให้คะแนน</p>
+      </div>
+
+      <div class="q">
+        <span class="lbl">ท่านจะกลับมาเรียนหลักสูตรอื่นของเราอีกหรือไม่</span>
+        <div class="yn">
+          <label><input type="radio" name="willReturn" value="จะกลับมาเรียนอีก"><span>จะกลับมา</span></label>
+          <label><input type="radio" name="willReturn" value="ยังไม่แน่ใจ"><span>ยังไม่แน่ใจ</span></label>
+          <label><input type="radio" name="willReturn" value="ไม่กลับมา"><span>ไม่กลับมา</span></label>
+        </div>
+      </div>
+
+      <h2 class="font-display font-semibold text-xl mt-12 mb-6">ความเห็นเพิ่มเติม</h2>
+
+      <div class="q">
+        <span class="lbl">สิ่งที่ท่านประทับใจที่สุด</span>
+        <textarea name="liked" rows="3" placeholder="เขียนสั้นๆ ได้"></textarea>
+      </div>
+
+      <div class="q">
+        <span class="lbl">สิ่งที่ควรปรับปรุง</span>
+        <textarea name="improve" rows="3" placeholder="บอกตรงๆ ได้เลย เราอยากรู้จริงๆ"></textarea>
+      </div>
+
+      <div class="q">
+        <span class="lbl">หัวข้อที่ท่านอยากเรียนต่อไป</span>
+        <textarea name="wantNext" rows="2" placeholder="เช่น ศิลปะล้านนา เครื่องถ้วยโบราณ"></textarea>
+      </div>
+
+      <div class="q">
+        <span class="lbl">เบอร์โทรศัพท์ <span class="text-ink-faint font-normal">(ไม่บังคับ)</span></span>
+        <input type="tel" name="phone" inputmode="numeric" placeholder="08X XXX XXXX">
+      </div>
+
+      <div id="form-error" class="hide mt-6 border border-[#C2410C] bg-orange-50 rounded-sm p-5">
+        <p class="font-display font-semibold text-[#C2410C] mb-1">ส่งแบบประเมินไม่สำเร็จ</p>
+        <p id="form-error-msg" class="text-[15px]"></p>
+      </div>
+
+      <button type="submit" id="submit-btn"
+        class="mt-4 w-full bg-chula text-white px-8 py-4 rounded-full font-display font-semibold text-lg hover:bg-chula-dark transition disabled:opacity-60">
+        ส่งแบบประเมิน
+      </button>
+    </form>
+  </div>
+
+  <div id="view-done" class="hide"></div>
+</main>
+
+<footer class="bg-ink text-white/70 py-10 mt-16">
+  <div class="max-w-content mx-auto px-5 sm:px-8 text-sm">
+    <p class="font-display font-semibold text-white">สื่อสารเชิงวัฒนธรรม จุฬาลงกรณ์มหาวิทยาลัย</p>
+    <p class="mt-2">ภาควิชาการประชาสัมพันธ์ คณะนิเทศศาสตร์</p>
+  </div>
+</footer>
+
+<script>
+const esc = s => String(s??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $ = id => document.getElementById(id);
+let CONFIG = {}, COURSE = null, BATCH = null, BATCHCODE = '';
+
+const DIMS = [
+  ['rContent','เนื้อหาหลักสูตร','ความครบถ้วน ความลึก และความน่าสนใจของเนื้อหา'],
+  ['rSpeaker','วิทยากร','ความรู้ วิธีถ่ายทอด และการตอบคำถาม'],
+  ['rMaterial','เอกสารและสื่อ','เอกสารประกอบ ภาพ และสื่อที่ใช้'],
+  ['rVenue','สถานที่และการจัดการ','สถานที่ การประสานงาน และการดูแลผู้เรียน'],
+  ['rValue','ความคุ้มค่า','เทียบกับค่าลงทะเบียนที่ชำระ'],
+  ['rOverall','ภาพรวมทั้งหมด','ความพึงพอใจโดยรวมต่อหลักสูตรนี้']
+];
+
+function scaleHTML(name, max){
+  let h = '';
+  const start = max === 10 ? 0 : 1;
+  for (let i = start; i <= max; i++)
+    h += '<label class="sc"><input type="radio" name="'+name+'" value="'+i+'"><span>'+i+'</span></label>';
+  return h;
+}
+
+function buildRatings(){
+  $('rating-questions').innerHTML = DIMS.map(d =>
+    '<div class="q"><span class="lbl">' + esc(d[1]) + '</span>' +
+    '<p class="text-ink-faint text-sm mb-3 -mt-1">' + esc(d[2]) + '</p>' +
+    '<div class="scale">' + scaleHTML(d[0], 5) + '</div>' +
+    '<div class="anchors"><span>ควรปรับปรุง</span><span>ดีมาก</span></div>' +
+    '<p class="err" data-for="' + d[0] + '">กรุณาให้คะแนน</p></div>').join('');
+  $('s-knowBefore').innerHTML = scaleHTML('knowBefore', 5);
+  $('s-knowAfter').innerHTML  = scaleHTML('knowAfter', 5);
+  $('s-nps').innerHTML        = scaleHTML('nps', 10);
+}
+
+(async function init(){
+  buildRatings();
+  BATCHCODE = new URLSearchParams(location.search).get('batch') || '';
+  try {
+    const r = await Promise.all([fetch('courses.json'), fetch('config.json')]);
+    const courses = (await r[0].json()).courses;
+    CONFIG = await r[1].json();
+    for (const c of courses){
+      const b = (c.batches||[]).find(x => x.batchCode === BATCHCODE);
+      if (b){ COURSE = c; BATCH = b; break; }
+    }
+  } catch(e){ console.error(e); }
+  renderBox();
+})();
+
+function renderBox(){
+  const box = $('course-box');
+  if (!BATCHCODE){
+    box.innerHTML = '<p class="font-display font-semibold mb-2">ไม่พบรหัสรุ่น</p>' +
+      '<p class="text-[15px] text-ink-soft">กรุณาเปิดลิงก์แบบประเมินที่เจ้าหน้าที่ส่งให้ทาง LINE</p>';
+    $('eval-form').classList.add('hide');
+    return;
+  }
+  box.innerHTML =
+    '<p class="text-ink-faint text-sm mb-1">หลักสูตรที่ประเมิน</p>' +
+    '<p class="font-display font-semibold text-xl leading-snug mb-3">' +
+      esc(COURSE ? COURSE.shortTitle : BATCHCODE) + '</p>' +
+    '<div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-[15px]">' +
+      '<span class="accession text-chula-dark">' + esc(BATCHCODE) + '</span>' +
+      (BATCH ? '<span>' + esc(BATCH.dates) + '</span>' : '') +
+    '</div>';
+}
+
+function showErr(name, on){
+  const el = document.querySelector('.err[data-for="'+name+'"]');
+  if (el) el.classList.toggle('on', on);
+}
+
+$('eval-form').addEventListener('submit', async ev => {
+  ev.preventDefault();
+  $('form-error').classList.add('hide');
+  const f = new FormData(ev.target);
+  const get = k => (f.get(k) || '').toString().trim();
+
+  let bad = null;
+  const required = DIMS.map(d => d[0]).concat(['knowBefore','knowAfter','nps']);
+  required.forEach(n => {
+    const ok = !!get(n);
+    showErr(n, !ok);
+    if (!ok && !bad) bad = n;
+  });
+  if (bad){
+    const el = document.querySelector('.err[data-for="'+bad+'"]');
+    if (el) el.scrollIntoView({block:'center', behavior:'smooth'});
+    return;
+  }
+
+  const btn = $('submit-btn');
+  btn.disabled = true; btn.textContent = 'กำลังส่ง...';
+
+  const payload = {
+    type: 'evaluate',
+    secret: (CONFIG.registrationForm && CONFIG.registrationForm.secret) || '',
+    batchCode: BATCHCODE,
+    courseTitle: COURSE ? COURSE.title : '',
+    phone: get('phone').replace(/[^0-9]/g,''),
+    willReturn: get('willReturn'),
+    liked: get('liked'), improve: get('improve'), wantNext: get('wantNext')
+  };
+  required.forEach(n => payload[n] = get(n));
+
+  try {
+    const url = CONFIG.registrationForm && CONFIG.registrationForm.endpoint;
+    if (!url) throw new Error('no endpoint');
+    const res = await fetch(url, {
+      method:'POST', mode:'cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify(payload)
+    });
+    const out = await res.json();
+    if (!out.ok) throw new Error(out.error || 'failed');
+    done();
+  } catch (e) {
+    console.error(e);
+    btn.disabled = false; btn.textContent = 'ส่งแบบประเมิน';
+    $('form-error-msg').textContent =
+      'กรุณาลองใหม่อีกครั้ง หากยังไม่สำเร็จ ส่งความเห็นมาทาง LINE ทางการของเราได้เลยครับ';
+    $('form-error').classList.remove('hide');
+  }
+});
+
+function done(){
+  const oa = (CONFIG.contact && CONFIG.contact.lineOA) || {};
+  $('view-form').classList.add('hide');
+  const v = $('view-done'); v.classList.remove('hide');
+  v.innerHTML =
+    '<div class="text-center py-10">' +
+      '<div class="w-16 h-16 rounded-full bg-chula-pale border-2 border-chula flex items-center justify-center mx-auto mb-6">' +
+        '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#A63A63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>' +
+      '</div>' +
+      '<h1 class="font-display font-semibold text-3xl mb-4">ขอบคุณสำหรับความเห็น</h1>' +
+      '<p class="text-ink-soft text-[15px] max-w-md mx-auto mb-10">' +
+        'ความเห็นของท่านจะถูกนำไปใช้พัฒนาหลักสูตรรุ่นต่อไปจริง ' +
+        'ทีมงานอ่านทุกข้อความที่ท่านเขียนมา</p>' +
+      '<div class="flex flex-wrap gap-3 justify-center">' +
+        '<a href="index.html#programme" class="bg-chula text-white px-6 py-3 rounded-full font-display font-medium text-[15px]">ดูหลักสูตรอื่น</a>' +
+        (oa.url ? '<a href="' + esc(oa.url) + '" target="_blank" rel="noopener" class="border border-chula text-chula-dark px-6 py-3 rounded-full font-display font-medium text-[15px]">ติดต่อทาง LINE</a>' : '') +
+      '</div>' +
+    '</div>';
+  scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+</body>
+</html>

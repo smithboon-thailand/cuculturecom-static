@@ -40,7 +40,7 @@
   },
   "registrationForm": {
     "enabled": true,
-    "endpoint": "https://script.google.com/macros/s/AKfycbzVDyJiIGpCd4PcZhBl6h_YFFGv73coKfK0ta4a2tqNrzKwHu-qND6Zpqqvd-G0zKG3/exec",
+    "endpoint": "https://script.google.com/macros/s/AKfycbyMBRAcsI8ur17HpobKWJDJHO2pUsCT3_aRl20QSA2oI0b0D4pYugj_LA6kKqsWw7gU/exec",
     "secret": "cuc-2569-At1zktJwJ8gt",
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1jwqLQo0NBPbD6cBnIbX3lOhVkIbs28j9dRfHSu2CNyA/edit"
   },
