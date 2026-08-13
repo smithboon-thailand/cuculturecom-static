@@ -23,7 +23,13 @@
         "phoneLabel": "090 242 6295",
         "line": ""
       }
-    ]
+    ],
+    "lineQr": {
+      "image": "line-qr.svg",
+      "url": "https://line.me/ti/p/~suthee_him",
+      "label": "สแกนเพื่อเพิ่มเพื่อนใน LINE",
+      "account": "suthee_him"
+    }
   },
   "payment": {
     "bank": "ธนาคารกรุงเทพ",
