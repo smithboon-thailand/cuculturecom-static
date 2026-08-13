@@ -1,445 +1,478 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>หลักสูตรการสื่อสารเชิงวัฒนธรรมเพื่อการท่องเที่ยว | จุฬาลงกรณ์มหาวิทยาลัย</title>
-  <meta name="description" content="เรียนรู้ศิลปกรรมไทยกับผู้เชี่ยวชาญระดับประเทศ หลักสูตรอบรมประวัติศาสตร์ศิลปะและมรดกวัฒนธรรมไทย โดย ศ.เกียรติคุณ ดร.หม่อมราชวงศ์สุริยวุฒิ สุขสวัสดิ์" />
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="favicon-64.png">
-  <link rel="apple-touch-icon" href="favicon-64.png">
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            // Official Chula Pink #DE5C8E
-            chula: {
-              50:  '#fdf2f7',
-              100: '#fce7f0',
-              200: '#fbcfe0',
-              300: '#f9a8c9',
-              400: '#f472b0',
-              500: '#DE5C8E',   // Official CU Pink
-              600: '#c73d75',
-              700: '#a82d5f',
-              800: '#8c2750',
-              900: '#752447',
-              950: '#461228',
-            }
-          },
-          fontFamily: {
-            prompt: ['Prompt', 'sans-serif'],
-            sarabun: ['Sarabun', 'sans-serif'],
-          }
-        }
-      }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สื่อสารเชิงวัฒนธรรม จุฬาลงกรณ์มหาวิทยาลัย</title>
+<meta name="description" content="หลักสูตรอบรมและทัศนศึกษาด้านประวัติศาสตร์ศิลปะและการสื่อสารเชิงวัฒนธรรม โดยคณะนิเทศศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย">
+<meta property="og:title" content="สื่อสารเชิงวัฒนธรรม จุฬาลงกรณ์มหาวิทยาลัย">
+<meta property="og:description" content="เรียนรู้มรดกศิลปกรรมไทย จากผู้เชี่ยวชาญระดับประเทศ">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="th_TH">
+<meta property="og:image" content="og-image.jpg">
+<link rel="icon" href="favicon-64.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        chula:  { DEFAULT:'#DE5C8E', dark:'#A63A63', mid:'#C4436F', light:'#F5C2D5', pale:'#FDF2F6' },
+        ink:    { DEFAULT:'#241C26', soft:'#5C4F60', faint:'#8B7F8E' },
+        paper:  '#FBF9FA',
+        rule:   '#E8DFE4',
+        recruiting:'#15803D', upcoming:'#C2410C', ongoing:'#DE5C8E', completed:'#78716C'
+      },
+      fontFamily: { display:['Prompt','sans-serif'], body:['Sarabun','sans-serif'] },
+      maxWidth: { content:'76rem' }
     }
-  </script>
-  
-  <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Sarabun', sans-serif; }
-    .font-display { font-family: 'Prompt', sans-serif; }
-    
-    /* Video overlay gradient - darker with pink tint */
-    .hero-overlay {
-      background: linear-gradient(to bottom, 
-        rgba(15, 23, 42, 0.65) 0%, 
-        rgba(15, 23, 42, 0.40) 35%, 
-        rgba(70, 18, 40, 0.75) 100%);
-    }
-    
-    /* Pink accent line */
-    .pink-line {
-      background: linear-gradient(90deg, transparent, #DE5C8E, transparent);
-    }
-    
-    /* Card hover */
-    .course-card {
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .course-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 50px -12px rgba(222, 92, 142, 0.30);
-    }
-    
-    /* Shine effect */
-    .shine {
-      position: relative;
-      overflow: hidden;
-    }
-    .shine::after {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 50%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.7s;
-    }
-    .shine:hover::after { left: 100%; }
-    
-    /* Custom scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #0f172a; }
-    ::-webkit-scrollbar-thumb { background: #DE5C8E; border-radius: 4px; }
-    
-    /* Logo glow */
-    .logo-glow {
-      filter: drop-shadow(0 0 8px rgba(222, 92, 142, 0.4));
-    }
-  </style>
+  }
+}
+</script>
+<style>
+  html{scroll-behavior:smooth}
+  body{background:#FBF9FA;color:#241C26;font-family:'Sarabun',sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.font-display{font-family:'Prompt',sans-serif;line-height:1.35}
+  /* museum accession label — the signature device */
+  .accession{font-family:'Prompt',sans-serif;font-weight:500;font-size:.8125rem;letter-spacing:.06em;
+    border:1px solid currentColor;border-radius:2px;padding:.15rem .5rem;display:inline-block;line-height:1.5}
+  .rule-t{border-top:1px solid #E8DFE4}
+  .skel{background:linear-gradient(90deg,#F1EAEE 25%,#F8F3F5 50%,#F1EAEE 75%);background-size:200% 100%;animation:sh 1.4s infinite}
+  @keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  .card{transition:transform .25s ease, box-shadow .25s ease}
+  .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -18px rgba(36,28,38,.28)}
+  :focus-visible{outline:2px solid #A63A63;outline-offset:3px;border-radius:2px}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+    .card:hover{transform:none}
+  }
+  @media (max-width:768px){ #heroVideo{display:none} }
+</style>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased">
+<body>
 
-  <!-- ========== NAVBAR ========== -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-950/85 backdrop-blur-md border-b border-chula-500/20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 md:h-20">
-        <!-- Logo -->
-        <a href="#" class="flex items-center gap-3 group">
-          <img src="icon-clean.png" alt="สื่อสารเชิงวัฒนธรรม" class="h-11 w-11 object-contain logo-glow group-hover:scale-105 transition duration-300 rounded-full bg-white/5 p-0.5">
-          <div class="hidden sm:block">
-            <div class="font-display font-semibold text-sm md:text-base tracking-wide text-white">สื่อสารเชิงวัฒนธรรม</div>
-            <div class="text-[10px] md:text-xs text-chula-400 tracking-wider">CHULA CULTURE COM</div>
-          </div>
-        </a>
-        
-        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-          <a href="#courses" class="hover:text-chula-400 transition">หลักสูตร</a>
-          <a href="#expert" class="hover:text-chula-400 transition">วิทยากร</a>
-          <a href="#why" class="hover:text-chula-400 transition">ทำไมต้องเรียน</a>
-          <a href="#contact" class="hover:text-chula-400 transition">ติดต่อ</a>
-        </div>
-        
-        <a href="#courses" class="hidden sm:inline-flex items-center px-5 py-2.5 rounded-full bg-gradient-to-r from-chula-500 to-chula-600 text-white font-semibold text-sm hover:from-chula-400 hover:to-chula-500 transition shadow-lg shadow-chula-500/30">
-          สมัครเรียน
-        </a>
-      </div>
+<!-- ══ NAV ══ -->
+<header class="fixed top-0 inset-x-0 z-50 bg-paper/90 backdrop-blur border-b border-rule">
+  <nav class="max-w-content mx-auto px-5 sm:px-8 h-16 flex items-center justify-between gap-4">
+    <a href="#top" class="flex items-center gap-3 min-w-0">
+      <img src="icon-clean.png" alt="" width="32" height="32" class="w-8 h-8 object-contain shrink-0"
+           onerror="this.style.display='none'">
+      <span class="min-w-0">
+        <span class="block font-display font-600 text-[15px] leading-tight truncate">สื่อสารเชิงวัฒนธรรม</span>
+        <span class="block font-display text-[10px] tracking-[.18em] text-ink-faint leading-tight">CHULA CULTURE COM</span>
+      </span>
+    </a>
+    <div class="hidden md:flex items-center gap-7 text-[15px]">
+      <a href="#programme" class="hover:text-chula-dark transition">ตารางรุ่น</a>
+      <a href="#courses" class="hover:text-chula-dark transition">หลักสูตร</a>
+      <a href="#expert" class="hover:text-chula-dark transition">วิทยากร</a>
+      <a href="#howto" class="hover:text-chula-dark transition">วิธีสมัคร</a>
+      <a href="#contact" class="bg-chula text-white px-5 py-2 rounded-full font-display font-500 hover:bg-chula-dark transition">ติดต่อสมัคร</a>
     </div>
+    <a href="#contact" class="md:hidden bg-chula text-white px-4 py-2 rounded-full text-sm font-display font-500">สมัคร</a>
   </nav>
+</header>
 
-  <!-- ========== HERO ========== -->
-  <section class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
-    <!-- Video Background -->
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-      <source src="promo_hero.mp4" type="video/mp4">
-      <img src="4wo8d.jpg" alt="Wat Arun at golden hour" class="w-full h-full object-cover">
-    </video>
-    
-    <!-- Overlay -->
-    <div class="absolute inset-0 hero-overlay"></div>
-    
-    <!-- Content -->
-    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center pt-16">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur border border-chula-400/30 text-sm text-chula-200 mb-6">
-        <span class="w-2 h-2 rounded-full bg-chula-400 animate-pulse"></span>
-        ศูนย์เชี่ยวชาญเฉพาะทางด้านนวัตกรรมการสื่อสาร · คณะนิเทศศาสตร์ จุฬาฯ
+<!-- ══ HERO ══ -->
+<section id="top" class="relative min-h-[88vh] flex items-center pt-16 overflow-hidden">
+  <video id="heroVideo" autoplay muted loop playsinline preload="metadata"
+         poster="hero-fallback.jpg"
+         class="absolute inset-0 w-full h-full object-cover">
+    <source src="promo_hero.mp4" type="video/mp4">
+  </video>
+  <div class="absolute inset-0 bg-gradient-to-br from-chula-dark via-chula-mid to-chula"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/35 to-black/45"></div>
+
+  <div class="relative max-w-content mx-auto px-5 sm:px-8 py-20 w-full">
+    <p class="font-display text-[11px] sm:text-xs tracking-[.28em] text-chula-light mb-7">
+      ภาควิชาการประชาสัมพันธ์ คณะนิเทศศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
+    </p>
+    <h1 class="font-display font-600 text-white text-[2.1rem] sm:text-5xl lg:text-[3.75rem] leading-[1.25] max-w-3xl">
+      เรียนรู้มรดกศิลปกรรมไทย<br>จากผู้เชี่ยวชาญระดับประเทศ
+    </h1>
+    <p class="mt-7 text-white/90 text-lg sm:text-xl max-w-xl leading-relaxed">
+      อบรมและทัศนศึกษา รุ่นละ 10 คน เพื่อให้ทุกคนได้ถาม ได้เห็น และเล่าต่อได้อย่างถูกต้อง
+    </p>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a href="#programme" class="bg-white text-chula-dark px-7 py-3.5 rounded-full font-display font-600 hover:bg-chula-pale transition">
+        รุ่นที่เปิดรับสมัคร
+      </a>
+      <a href="#courses" class="border border-white/70 text-white px-7 py-3.5 rounded-full font-display font-500 hover:bg-white/10 transition">
+        ดูหลักสูตรทั้งหมด
+      </a>
+    </div>
+    <p class="mt-12 text-white/70 text-sm">
+      วิทยากร ศาสตราจารย์เกียรติคุณ ดร. หม่อมราชวงศ์สุริยวุฒิ สุขสวัสดิ์
+    </p>
+  </div>
+</section>
+
+<!-- ══ PROGRAMME — signature typographic schedule ══ -->
+<section id="programme" class="py-20 sm:py-28 bg-paper">
+  <div class="max-w-content mx-auto px-5 sm:px-8">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-14">
+      <div>
+        <p class="font-display text-[11px] tracking-[.24em] text-chula-dark mb-3">ตารางรุ่น</p>
+        <h2 class="font-display font-600 text-3xl sm:text-4xl">รุ่นที่เปิดรับสมัครขณะนี้</h2>
       </div>
-      
-      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6">
-        เรียนรู้<span class="text-transparent bg-clip-text bg-gradient-to-r from-chula-300 to-chula-500">ศิลปกรรมไทย</span><br>
-        กับผู้เชี่ยวชาญระดับประเทศ
-      </h1>
-      
-      <p class="text-lg md:text-xl text-slate-200/90 max-w-2xl mx-auto mb-4 leading-relaxed">
-        หลักสูตรอบรมด้านประวัติศาสตร์ศิลปะและมรดกวัฒนธรรมไทย<br class="hidden sm:block">
-        โดย <span class="text-chula-300 font-medium">ศาสตราจารย์เกียรติคุณ ดร.หม่อมราชวงศ์สุริยวุฒิ สุขสวัสดิ์</span>
+      <p class="text-ink-soft max-w-sm text-[15px]">
+        ทุกรุ่นมีรหัสกำกับ ใช้รหัสนี้ตอนแจ้งโอนเงิน เพื่อยืนยันที่นั่งได้ทันที
       </p>
-      
-      <p class="text-sm text-slate-400 mb-10">
-        หัวหน้าโครงการ · รศ.ดร.สมิทธิ์ บุญชุติมา
-      </p>
-      
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#courses" class="shine inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-chula-500 to-chula-600 text-white font-semibold text-lg hover:from-chula-400 hover:to-chula-500 transition shadow-xl shadow-chula-500/40">
-          ดูหลักสูตรทั้งหมด
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </a>
-        <a href="#expert" class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/10 backdrop-blur border border-white/20 text-white font-medium hover:bg-white/20 hover:border-chula-400/50 transition">
-          รู้จักวิทยากร
-        </a>
-      </div>
     </div>
-    
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50">
-      <span class="text-xs tracking-widest uppercase">เลื่อนลง</span>
-      <div class="w-px h-10 bg-gradient-to-b from-chula-400 to-transparent"></div>
-    </div>
-  </section>
+    <div id="programme-list"></div>
+  </div>
+</section>
 
-  <!-- ========== STATS ========== -->
-  <section class="relative z-10 -mt-16 max-w-6xl mx-auto px-4">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-      <div class="bg-slate-900/90 backdrop-blur border border-chula-500/20 rounded-2xl p-6 text-center hover:border-chula-400/40 transition">
-        <div class="text-3xl md:text-4xl font-display font-bold text-chula-400 mb-1">95%</div>
-        <div class="text-sm text-slate-400">ผู้เรียนได้งานภายใน 6 เดือน</div>
-      </div>
-      <div class="bg-slate-900/90 backdrop-blur border border-chula-500/20 rounded-2xl p-6 text-center hover:border-chula-400/40 transition">
-        <div class="text-3xl md:text-4xl font-display font-bold text-chula-400 mb-1">40-60%</div>
-        <div class="text-sm text-slate-400">รายได้เฉลี่ยเพิ่มขึ้น</div>
-      </div>
-      <div class="bg-slate-900/90 backdrop-blur border border-chula-500/20 rounded-2xl p-6 text-center hover:border-chula-400/40 transition">
-        <div class="text-3xl md:text-4xl font-display font-bold text-chula-400 mb-1">25+</div>
-        <div class="text-sm text-slate-400">ประเทศที่มีผู้จ้างงาน</div>
-      </div>
-      <div class="bg-slate-900/90 backdrop-blur border border-chula-500/20 rounded-2xl p-6 text-center hover:border-chula-400/40 transition">
-        <div class="text-3xl md:text-4xl font-display font-bold text-chula-400 mb-1">40+</div>
-        <div class="text-sm text-slate-400">ปีประสบการณ์วิทยากร</div>
+<!-- ══ COURSES ══ -->
+<section id="courses" class="py-20 sm:py-28 bg-white border-y border-rule">
+  <div class="max-w-content mx-auto px-5 sm:px-8">
+    <p class="font-display text-[11px] tracking-[.24em] text-chula-dark mb-3">หลักสูตร</p>
+    <h2 class="font-display font-600 text-3xl sm:text-4xl mb-3">หลักสูตรทั้งหมด</h2>
+    <p class="text-ink-soft mb-10 max-w-2xl text-[15px]">
+      รวมหลักสูตรที่เปิดรับสมัคร จัดเป็นประจำ และที่จัดสำเร็จไปแล้ว
+    </p>
+
+    <div id="filters" class="flex flex-wrap gap-2.5 mb-12" role="group" aria-label="กรองหลักสูตร"></div>
+    <div id="course-grid" class="grid gap-7 md:grid-cols-2 lg:grid-cols-3"></div>
+    <p id="empty-msg" class="hidden text-ink-soft py-14 text-center">ไม่มีหลักสูตรในหมวดนี้</p>
+  </div>
+</section>
+
+<!-- ══ EXPERT ══ -->
+<section id="expert" class="py-20 sm:py-28">
+  <div class="max-w-content mx-auto px-5 sm:px-8 grid lg:grid-cols-[minmax(0,22rem)_1fr] gap-12 lg:gap-16 items-start">
+    <div>
+      <img id="expert-img" src="expert-suriyawut.jpg" alt="ภาพวิทยากรประจำหลักสูตร"
+           width="440" height="550" loading="lazy"
+           class="w-full aspect-[4/5] object-cover rounded-sm bg-chula-pale">
+    </div>
+    <div>
+      <p class="font-display text-[11px] tracking-[.24em] text-chula-dark mb-3">วิทยากร</p>
+      <h2 id="expert-name" class="font-display font-600 text-2xl sm:text-3xl leading-snug"></h2>
+      <ul id="expert-creds" class="mt-8 space-y-4"></ul>
+      <div class="mt-10 pt-8 rule-t">
+        <p class="font-display font-500 text-[15px]" id="lead-name"></p>
+        <p class="text-ink-soft text-sm mt-1" id="lead-title"></p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ========== COURSES ========== -->
-  <section id="courses" class="py-24 md:py-32">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <div class="inline-block text-chula-400 text-sm font-medium tracking-widest uppercase mb-3">เลือกตามเวลาและความสนใจ</div>
-        <h2 class="font-display text-3xl md:text-5xl font-bold mb-4">หลักสูตรของเรา</h2>
-        <div class="w-24 h-px pink-line mx-auto"></div>
+<!-- ══ WHY ══ -->
+<section id="why" class="py-20 sm:py-28 bg-chula-pale">
+  <div class="max-w-content mx-auto px-5 sm:px-8">
+    <p class="font-display text-[11px] tracking-[.24em] text-chula-dark mb-3">จุดต่าง</p>
+    <h2 class="font-display font-600 text-3xl sm:text-4xl mb-14">ทำไมต้องเรียนที่นี่</h2>
+    <div id="why-list" class="grid gap-10 md:grid-cols-3"></div>
+  </div>
+</section>
+
+<!-- ══ HOW TO REGISTER ══ -->
+<section id="howto" class="py-20 sm:py-28 bg-white border-y border-rule">
+  <div class="max-w-content mx-auto px-5 sm:px-8">
+    <p class="font-display text-[11px] tracking-[.24em] text-chula-dark mb-3">การสมัคร</p>
+    <h2 class="font-display font-600 text-3xl sm:text-4xl mb-14">สมัครเรียนอย่างไร</h2>
+    <ol id="howto-list" class="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mb-14"></ol>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+      <div class="border border-rule rounded-sm p-7">
+        <h3 class="font-display font-600 text-lg mb-5">ชำระค่าลงทะเบียน</h3>
+        <dl id="payment-details" class="space-y-3 text-[15px]"></dl>
       </div>
-      
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- Course 1 -->
-        <div class="course-card group bg-slate-900 border border-white/10 rounded-3xl overflow-hidden">
-          <div class="relative h-52 overflow-hidden">
-            <img src="mUmbz.jpg" alt="หลักสูตร 1 วัน" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-            <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-chula-500 text-white text-xs font-bold shadow-lg">1 วัน</div>
-          </div>
-          <div class="p-7">
-            <h3 class="font-display text-xl font-semibold mb-2">ทัศนศึกษารายเดือน</h3>
-            <p class="text-slate-400 text-sm mb-5 leading-relaxed">เรียนรู้ 5 มิติของสถานที่ประวัติศาสตร์ (ความสำคัญ ประวัติ รูปแบบศิลปกรรม คติสัญลักษณ์ การใช้ประโยชน์)</p>
-            <div class="flex items-end justify-between mb-6">
-              <div>
-                <div class="text-2xl font-display font-bold text-chula-400">1,900 ฿</div>
-                <div class="text-xs text-slate-500">6 ชั่วโมง · รับ 20 คน</div>
-              </div>
-              <div class="text-right text-xs text-slate-500">
-                ทุกวันอาทิตย์ที่ 2<br>ของเดือน
-              </div>
-            </div>
-            <a href="#contact" class="block w-full text-center py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-chula-500 hover:text-white hover:border-chula-500 transition font-medium text-sm">
-              สมัครรุ่นนี้
-            </a>
-          </div>
-        </div>
-        
-        <!-- Course 2 - Featured -->
-        <div class="course-card group bg-gradient-to-b from-slate-900 to-slate-900/80 border-2 border-chula-500/50 rounded-3xl overflow-hidden relative shadow-lg shadow-chula-500/10">
-          <div class="absolute top-0 right-0 bg-chula-500 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl">แนะนำ</div>
-          <div class="relative h-52 overflow-hidden">
-            <img src="OxXnJ.jpg" alt="หลักสูตร 4 วัน" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-            <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-chula-500 text-white text-xs font-bold shadow-lg">4 วัน</div>
-          </div>
-          <div class="p-7">
-            <h3 class="font-display text-xl font-semibold mb-2">มรดกศิลปกรรมในวังและวัด</h3>
-            <p class="text-slate-400 text-sm mb-5 leading-relaxed">เจาะลึก 5 สถานที่สำคัญ พระบรมมหาราชวัง · วัดพระแก้ว · พระราชวังบางปะอิน · วัดโพธิ์ · วัดอรุณ</p>
-            <div class="flex items-end justify-between mb-6">
-              <div>
-                <div class="text-2xl font-display font-bold text-chula-400">2,500 ฿</div>
-                <div class="text-xs text-slate-500">24 ชั่วโมง · รับ 20 คน</div>
-              </div>
-              <div class="text-right text-xs text-slate-500">
-                วุฒิบัตรจุฬาฯ<br>+ เข็มตราพระเกี้ยว
-              </div>
-            </div>
-            <a href="#contact" class="block w-full text-center py-3 rounded-xl bg-gradient-to-r from-chula-500 to-chula-600 text-white font-semibold text-sm hover:from-chula-400 hover:to-chula-500 transition shadow-md shadow-chula-500/30">
-              สมัครรุ่นนี้
-            </a>
-          </div>
-        </div>
-        
-        <!-- Course 3 -->
-        <div class="course-card group bg-slate-900 border border-white/10 rounded-3xl overflow-hidden">
-          <div class="relative h-52 overflow-hidden">
-            <img src="2IrAY.jpg" alt="หลักสูตร 1 เดือน" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-            <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-chula-500 text-white text-xs font-bold shadow-lg">1 เดือน</div>
-          </div>
-          <div class="p-7">
-            <h3 class="font-display text-xl font-semibold mb-2">ศิลปะไทยจากอดีตสู่ปัจจุบัน</h3>
-            <p class="text-slate-400 text-sm mb-5 leading-relaxed">ศึกษาศิลปะไทยทุกยุค ทวารวดี · ศรีวิชัย · ลพบุรี · สุโขทัย · อยุธยา · รัตนโกสินทร์ + ทัศนศึกษา</p>
-            <div class="flex items-end justify-between mb-6">
-              <div>
-                <div class="text-2xl font-display font-bold text-chula-400">9,500 ฿</div>
-                <div class="text-xs text-slate-500 line-through opacity-60">10,500 ฿</div>
-              </div>
-              <div class="text-right text-xs text-slate-500">
-                39 ชม. + ทัศนศึกษา<br>สอบปากเปล่า
-              </div>
-            </div>
-            <a href="#contact" class="block w-full text-center py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-chula-500 hover:text-white hover:border-chula-500 transition font-medium text-sm">
-              สมัครรุ่นนี้
-            </a>
-          </div>
+      <div class="bg-chula-pale border border-chula-light rounded-sm p-7">
+        <h3 class="font-display font-600 text-lg mb-4 text-chula-dark">อย่าลืมระบุรหัสรุ่น</h3>
+        <p class="text-[15px] leading-relaxed">
+          แต่ละเดือนมีหลายหลักสูตรเปิดพร้อมกัน การพิมพ์รหัสรุ่นกำกับตอนส่งสลิป
+          ทำให้เจ้าหน้าที่ยืนยันที่นั่งให้ท่านได้ทันที ไม่ต้องรอตรวจสอบ
+        </p>
+        <p class="mt-5 text-sm text-ink-soft">ตัวอย่างรหัสรุ่น</p>
+        <div class="mt-2 flex flex-wrap gap-2 text-chula-dark">
+          <span class="accession">วัดวัง-ร10</span>
+          <span class="accession">ทัศน-อยุธยา-ร1</span>
+          <span class="accession">ขอมเขมร-ร1</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ========== EXPERT ========== -->
-  <section id="expert" class="py-24 bg-slate-900/50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div class="relative">
-          <div class="absolute -inset-4 bg-gradient-to-br from-chula-500/25 to-transparent rounded-3xl blur-2xl"></div>
-          <img src="Jiw1y.jpg" alt="ศ.เกียรติคุณ ดร.หม่อมราชวงศ์สุริยวุฒิ สุขสวัสดิ์" class="relative rounded-3xl shadow-2xl w-full max-w-md mx-auto object-cover aspect-[3/4] border border-chula-500/20">
-        </div>
-        
-        <div>
-          <div class="text-chula-400 text-sm font-medium tracking-widest uppercase mb-3">วิทยากรหลัก</div>
-          <h2 class="font-display text-3xl md:text-4xl font-bold mb-4 leading-tight">
-            ศาสตราจารย์เกียรติคุณ ดร.<br>
-            หม่อมราชวงศ์สุริยวุฒิ สุขสวัสดิ์
-          </h2>
-          <div class="w-16 h-px bg-chula-500 mb-6"></div>
-          
-          <ul class="space-y-4 text-slate-300">
-            <li class="flex gap-3">
-              <span class="text-chula-400 mt-1">✦</span>
-              <span>Ph.D. Art History, Sorbonne University</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-chula-400 mt-1">✦</span>
-              <span>ผู้เขียนหนังสือประวัติศาสตร์วัด-วังของไทย</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-chula-400 mt-1">✦</span>
-              <span>มัคคุเทศก์กิตติมศักดิ์ นำพระราชอาคันตุกะและผู้นำรัฐบาล</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-chula-400 mt-1">✦</span>
-              <span>บรรยายได้ทั้งภาษาไทยและอังกฤษ มากกว่า 40 ปี</span>
-            </li>
-          </ul>
-          
-          <p class="mt-8 text-slate-400 text-sm leading-relaxed">
-            พร้อมด้วยทีมวิทยากรจากคณะนิเทศศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย<br>
-            นำโดย <span class="text-chula-300">รศ.ดร.สมิทธิ์ บุญชุติมา</span> หัวหน้าโครงการ
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ══ CONTACT ══ -->
+<section id="contact" class="py-20 sm:py-28">
+  <div class="max-w-content mx-auto px-5 sm:px-8">
+    <p class="font-display text-[11px] tracking-[.24em] text-chula-dark mb-3">ติดต่อ</p>
+    <h2 class="font-display font-600 text-3xl sm:text-4xl mb-4">สอบถามและสมัครเรียน</h2>
+    <p id="contact-org" class="text-ink-soft mb-12 text-[15px]"></p>
+    <div id="contact-people" class="grid gap-6 md:grid-cols-2 max-w-3xl"></div>
+    <p id="contact-address" class="mt-12 text-ink-soft text-[15px] max-w-lg"></p>
+  </div>
+</section>
 
-  <!-- ========== WHY ========== -->
-  <section id="why" class="py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="font-display text-3xl md:text-5xl font-bold mb-4">ทำไมต้องเรียนกับเรา</h2>
-        <div class="w-24 h-px pink-line mx-auto"></div>
-      </div>
-      
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="text-center p-8 rounded-3xl bg-slate-900/50 border border-white/5 hover:border-chula-500/30 transition">
-          <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-chula-500/15 flex items-center justify-center text-3xl">🏛️</div>
-          <h3 class="font-display text-xl font-semibold mb-3">เรียนจากต้นแบบจริง</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">ไม่ใช่แค่ทฤษฎี แต่ลงพื้นที่จริง วัด วัง พิพิธภัณฑ์ กับผู้เชี่ยวชาญที่นำพระราชอาคันตุกะมาแล้ว</p>
-        </div>
-        <div class="text-center p-8 rounded-3xl bg-slate-900/50 border border-white/5 hover:border-chula-500/30 transition">
-          <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-chula-500/15 flex items-center justify-center text-3xl">📜</div>
-          <h3 class="font-display text-xl font-semibold mb-3">วุฒิบัตรจากจุฬาฯ</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">ได้รับวุฒิบัตรและเข็มตราพระเกี้ยวจากจุฬาลงกรณ์มหาวิทยาลัย เพิ่มความน่าเชื่อถือในสายอาชีพ</p>
-        </div>
-        <div class="text-center p-8 rounded-3xl bg-slate-900/50 border border-white/5 hover:border-chula-500/30 transition">
-          <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-chula-500/15 flex items-center justify-center text-3xl">🌏</div>
-          <h3 class="font-display text-xl font-semibold mb-3">ต่อยอดสู่สายอาชีพ</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">เหมาะสำหรับมัคคุเทศก์ ผู้นำเที่ยว นักสื่อสารวัฒนธรรม และผู้ที่ต้องการทำงานด้านท่องเที่ยวเชิงคุณภาพ</p>
-        </div>
-      </div>
-      
-      <!-- Decorative image -->
-      <div class="mt-16 rounded-3xl overflow-hidden border border-chula-500/20">
-        <img src="oVUGx.jpg" alt="รายละเอียดศิลปกรรมไทย" class="w-full h-64 md:h-80 object-cover opacity-90">
-      </div>
-    </div>
-  </section>
+<!-- ══ FOOTER ══ -->
+<footer class="bg-ink text-white/75 py-14">
+  <div class="max-w-content mx-auto px-5 sm:px-8">
+    <p class="font-display font-600 text-white text-lg">สื่อสารเชิงวัฒนธรรม จุฬาลงกรณ์มหาวิทยาลัย</p>
+    <p class="mt-3 text-sm leading-relaxed">
+      ภาควิชาการประชาสัมพันธ์ คณะนิเทศศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย<br>
+      ร่วมกับ ศูนย์บริการวิชาการแห่งจุฬาลงกรณ์มหาวิทยาลัย
+    </p>
+    <p class="mt-8 pt-6 border-t border-white/15 text-xs text-white/50">
+      สงวนลิขสิทธิ์ พ.ศ. 2569
+    </p>
+  </div>
+</footer>
 
-  <!-- ========== CONTACT ========== -->
-  <section id="contact" class="py-24 bg-gradient-to-b from-slate-900 to-slate-950">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="font-display text-3xl md:text-5xl font-bold mb-4">พร้อมเริ่มต้นแล้วหรือยัง?</h2>
-      <p class="text-slate-400 mb-10 max-w-xl mx-auto">
-        ติดต่อสอบถามหรือสมัครเรียนได้ทันที<br>
-        เรายินดีให้คำปรึกษาเลือกหลักสูตรที่เหมาะกับคุณ
-      </p>
-      
-      <div class="bg-slate-900 border border-chula-500/20 rounded-3xl p-8 md:p-12 text-left max-w-2xl mx-auto">
-        <div class="space-y-6">
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-full bg-chula-500/20 flex items-center justify-center text-chula-400 shrink-0">📞</div>
+<script>
+const PLACEHOLDER = 'placeholder.svg';
+const THAI_MONTHS = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน',
+                     'กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+const STATUS = {
+  recruiting:{label:'กำลังรับสมัคร', cls:'bg-recruiting', order:1},
+  upcoming:  {label:'เปิดรับเร็วๆ นี้', cls:'bg-upcoming',  order:2},
+  ongoing:   {label:'จัดเป็นประจำ',    cls:'bg-ongoing',    order:3},
+  completed: {label:'จัดเสร็จสิ้นแล้ว', cls:'bg-completed',  order:4}
+};
+const esc = s => String(s??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const today = new Date(); today.setHours(0,0,0,0);
+
+let COURSES = [], CONFIG = {}, activeFilter = 'all';
+
+/* ── skeleton while loading ── */
+function skeleton(){
+  document.getElementById('course-grid').innerHTML =
+    Array.from({length:3}, () => `<div class="border border-rule rounded-sm overflow-hidden">
+      <div class="skel aspect-[16/9]"></div>
+      <div class="p-6 space-y-3"><div class="skel h-5 w-3/4 rounded"></div>
+      <div class="skel h-4 w-full rounded"></div><div class="skel h-4 w-5/6 rounded"></div></div></div>`).join('');
+  document.getElementById('programme-list').innerHTML =
+    `<div class="space-y-4">${Array.from({length:3},()=>'<div class="skel h-16 rounded"></div>').join('')}</div>`;
+}
+
+function failure(){
+  const msg = `<div class="border border-rule rounded-sm p-10 text-center">
+    <p class="font-display font-600 text-lg mb-2">โหลดข้อมูลหลักสูตรไม่สำเร็จ</p>
+    <p class="text-ink-soft text-[15px] mb-6">กรุณารีเฟรชหน้าเว็บอีกครั้ง หรือติดต่อเจ้าหน้าที่โดยตรง</p>
+    <a href="tel:0963236999" class="inline-block bg-chula text-white px-6 py-3 rounded-full font-display font-500">โทร 096 323 6999</a>
+  </div>`;
+  document.getElementById('course-grid').innerHTML = msg;
+  document.getElementById('programme-list').innerHTML = '';
+}
+
+/* ── programme: upcoming batches grouped by month ── */
+function renderProgramme(){
+  const rows = [];
+  COURSES.forEach(c => (c.batches||[]).forEach(b => {
+    if (b.status === 'completed') return;
+    const end = b.dateEnd ? new Date(b.dateEnd) : null;
+    if (!end || end < today) return;
+    rows.push({...b, course:c});
+  }));
+  rows.sort((a,b) => a.dateStart.localeCompare(b.dateStart));
+
+  const box = document.getElementById('programme-list');
+  if (!rows.length){
+    box.innerHTML = `<div class="border border-rule rounded-sm p-10">
+      <p class="font-display font-600 text-lg mb-2">ยังไม่มีรุ่นที่ประกาศกำหนดการ</p>
+      <p class="text-ink-soft text-[15px] mb-6">ติดต่อเจ้าหน้าที่เพื่อสอบถามรุ่นถัดไปได้เลย</p>
+      <a href="#contact" class="inline-block bg-chula text-white px-6 py-3 rounded-full font-display font-500">ติดต่อสอบถาม</a></div>`;
+    return;
+  }
+
+  const groups = {};
+  rows.forEach(r => {
+    const d = new Date(r.dateStart);
+    const key = `${d.getFullYear()}-${d.getMonth()}`;
+    (groups[key] ??= {label:`${THAI_MONTHS[d.getMonth()]} ${d.getFullYear()+543}`, items:[]}).items.push(r);
+  });
+
+  box.innerHTML = Object.values(groups).map(g => `
+    <div class="mb-12 last:mb-0">
+      <h3 class="font-display font-300 text-2xl sm:text-3xl text-chula-dark mb-5">${esc(g.label)}</h3>
+      <ul class="rule-t">
+        ${g.items.map(r => `
+          <li class="border-b border-rule py-6 grid gap-4 sm:grid-cols-[9rem_1fr_auto] sm:items-center">
             <div>
-              <div class="text-sm text-slate-500 mb-1">โทร / LINE</div>
-              <div class="font-medium text-lg">คุณสุธี เวสารัชกิตติ</div>
-              <a href="tel:0963236999" class="text-chula-400 hover:underline">096-323-6999</a>
-              <span class="text-slate-500 text-sm ml-2">(ทุกวัน)</span>
+              <p class="font-display font-600 text-lg leading-tight">${esc(r.dates.replace(/\s\d{4}$/,''))}</p>
+              <p class="text-ink-faint text-sm mt-0.5">${esc(r.dayLabel)}</p>
             </div>
-          </div>
-          
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-full bg-chula-500/20 flex items-center justify-center text-chula-400 shrink-0">📍</div>
-            <div>
-              <div class="text-sm text-slate-500 mb-1">สถานที่เรียน</div>
-              <div class="font-medium">ศูนย์บริการวิชาการ จุฬาลงกรณ์มหาวิทยาลัย</div>
-              <div class="text-sm text-slate-400 mt-1">254 ถนนพญาไท ชั้น 14 อาคารวิจัยจุฬาฯ วังใหม่ ปทุมวัน กรุงเทพฯ 10330</div>
+            <div class="min-w-0">
+              <p class="font-display font-500 text-[17px] leading-snug">${esc(r.course.shortTitle)}</p>
+              <p class="text-ink-soft text-sm mt-1">${esc(r.time)} · ${esc(r.course.capacityLabel)}${r.note ? ' · '+esc(r.note) : ''}</p>
             </div>
-          </div>
-          
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-full bg-chula-500/20 flex items-center justify-center text-chula-400 shrink-0">💳</div>
-            <div>
-              <div class="text-sm text-slate-500 mb-1">ชำระเงิน</div>
-              <div class="font-medium">ธนาคารกรุงเทพ · ศูนย์บริการวิชาการแห่งจุฬาฯ</div>
-              <div class="text-sm text-slate-400 mt-1">เลขบัญชี 152-4-59566-5</div>
+            <div class="flex items-center gap-4 sm:justify-end">
+              <span class="accession text-chula-dark shrink-0">${esc(r.batchCode)}</span>
+              <span class="font-display font-600 text-lg whitespace-nowrap">${esc(r.course.priceLabel)}</span>
             </div>
-          </div>
+          </li>`).join('')}
+      </ul>
+    </div>`).join('');
+}
+
+/* ── filters ── */
+const FILTERS = [
+  {id:'all',        label:'ทั้งหมด'},
+  {id:'recruiting', label:'กำลังรับสมัคร'},
+  {id:'training',   label:'อบรม'},
+  {id:'fieldtrip',  label:'ทัศนศึกษา'},
+  {id:'online',     label:'ออนไลน์'}
+];
+function renderFilters(){
+  document.getElementById('filters').innerHTML = FILTERS.map(f => {
+    const on = activeFilter === f.id;
+    return `<button type="button" data-filter="${f.id}" aria-pressed="${on}"
+      class="px-5 py-2.5 rounded-full font-display font-500 text-[15px] border transition
+      ${on ? 'bg-chula text-white border-chula' : 'border-chula-light text-chula-dark hover:bg-chula-pale'}">
+      ${esc(f.label)}</button>`;
+  }).join('');
+}
+
+function matches(c){
+  if (activeFilter === 'all') return true;
+  if (activeFilter === 'recruiting') return c.status === 'recruiting';
+  return c.category === activeFilter;
+}
+
+/* ── course cards ── */
+function renderCourses(){
+  const list = COURSES.filter(matches).sort((a,b) => {
+    const d = (STATUS[a.status]?.order??9) - (STATUS[b.status]?.order??9);
+    if (d) return d;
+    const ad = a.batches?.[0]?.dateStart ?? '9999', bd = b.batches?.[0]?.dateStart ?? '9999';
+    return ad.localeCompare(bd);
+  });
+
+  document.getElementById('empty-msg').classList.toggle('hidden', list.length > 0);
+  document.getElementById('course-grid').innerHTML = list.map(c => {
+    const st = STATUS[c.status] ?? STATUS.completed;
+    const done = c.status === 'completed';
+    const live = (c.batches||[]).filter(b => b.status !== 'completed' &&
+                  (!b.dateEnd || new Date(b.dateEnd) >= today));
+
+    const batchBlock = done
+      ? `<p class="text-ink-faint text-sm">จัดเมื่อ ${esc(c.batches?.[0]?.dates ?? '')}</p>`
+      : live.length
+        ? `<ul class="space-y-2">${live.map(b => `
+            <li class="flex items-baseline justify-between gap-3 text-[15px]">
+              <span>รุ่น ${esc(b.batchNo)} · ${esc(b.dates)}</span>
+              <span class="accession text-chula-dark shrink-0">${esc(b.batchCode)}</span>
+            </li>`).join('')}</ul>`
+        : `<p class="text-ink-soft text-[15px]">รอประกาศกำหนดการรุ่นถัดไป</p>`;
+
+    const action = done
+      ? `<span class="text-ink-faint text-[15px]">จัดเสร็จสิ้นแล้ว</span>`
+      : `<a href="#contact" class="bg-chula text-white px-5 py-2.5 rounded-full font-display font-500 text-[15px] hover:bg-chula-dark transition">
+           ${live.length ? 'สมัครเรียน' : 'สอบถามรุ่นถัดไป'}</a>`;
+
+    return `<article id="course-${esc(c.id)}"
+      class="card border border-rule rounded-sm overflow-hidden bg-white flex flex-col ${done ? 'opacity-70' : ''}">
+      <div class="relative">
+        <img src="${esc(c.image)}" alt="ภาพประกอบหลักสูตร ${esc(c.shortTitle)}"
+             width="1200" height="675" loading="lazy"
+             class="w-full aspect-[16/9] object-cover bg-chula-pale ${done ? 'grayscale' : ''}"
+             onerror="this.onerror=null;this.src='${PLACEHOLDER}'">
+        <span class="absolute top-3 right-3 ${st.cls} text-white text-xs font-display font-500 px-3 py-1.5 rounded-full">
+          ${esc(st.label)}</span>
+      </div>
+      <div class="p-6 flex flex-col flex-1">
+        <div class="flex items-center gap-2.5 mb-4">
+          <span class="text-[11px] font-display font-500 tracking-wide text-ink-faint uppercase">${esc(c.categoryLabel)}</span>
+          <span class="accession text-ink-faint">${esc(c.code)}</span>
         </div>
-        
-        <div class="mt-10 flex flex-col sm:flex-row gap-4">
-          <a href="https://lin.ee/YqmNmKy" target="_blank" class="flex-1 text-center py-4 rounded-xl bg-[#06C755] text-white font-semibold hover:bg-[#05b34c] transition">
-            แอด LINE สอบถาม
-          </a>
-          <a href="tel:0963236999" class="flex-1 text-center py-4 rounded-xl bg-gradient-to-r from-chula-500 to-chula-600 text-white font-semibold hover:from-chula-400 hover:to-chula-500 transition shadow-lg shadow-chula-500/30">
-            โทรเลย
-          </a>
+        <h3 class="font-display font-600 text-xl leading-snug mb-3">${esc(c.shortTitle)}</h3>
+        <p class="text-ink-soft text-[15px] leading-relaxed mb-5">${esc(c.description)}</p>
+
+        ${c.highlights?.length ? `<ul class="mb-5 space-y-1.5">${c.highlights.map(h =>
+          `<li class="text-[15px] pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[.7em] before:w-1.5 before:h-1.5 before:bg-chula-light before:rounded-full">${esc(h)}</li>`
+        ).join('')}</ul>` : ''}
+
+        <dl class="text-[15px] space-y-1.5 mb-5 pt-5 rule-t">
+          <div class="flex gap-2"><dt class="text-ink-faint w-20 shrink-0">ระยะเวลา</dt><dd>${esc(c.duration)}</dd></div>
+          <div class="flex gap-2"><dt class="text-ink-faint w-20 shrink-0">จำนวน</dt><dd>${esc(c.capacityLabel)}</dd></div>
+          <div class="flex gap-2"><dt class="text-ink-faint w-20 shrink-0">สถานที่</dt><dd>${esc(c.venue)}</dd></div>
+          ${c.certificate ? `<div class="flex gap-2"><dt class="text-ink-faint w-20 shrink-0">ได้รับ</dt><dd>${esc(c.certificate)}</dd></div>` : ''}
+          ${c.frequency ? `<div class="flex gap-2"><dt class="text-ink-faint w-20 shrink-0">ความถี่</dt><dd>${esc(c.frequency)}</dd></div>` : ''}
+        </dl>
+
+        <div class="pt-5 rule-t mb-6">${batchBlock}</div>
+
+        <div class="mt-auto pt-5 rule-t flex items-center justify-between gap-4">
+          <span class="font-display font-600 text-xl">${esc(c.priceLabel)}</span>
+          ${action}
         </div>
       </div>
-    </div>
-  </section>
+    </article>`;
+  }).join('');
+}
 
-  <!-- ========== FOOTER ========== -->
-  <footer class="border-t border-chula-500/15 py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex items-center gap-3">
-          <img src="icon-clean.png" alt="Logo" class="h-10 w-10 object-contain opacity-90">
-          <div>
-            <div class="font-display font-semibold text-sm">สื่อสารเชิงวัฒนธรรม</div>
-            <div class="text-xs text-slate-500">คณะนิเทศศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย</div>
-          </div>
-        </div>
-        
-        <div class="text-center text-sm text-slate-500">
-          © 2026 ศูนย์เชี่ยวชาญเฉพาะทางด้านนวัตกรรมการสื่อสาร<br class="sm:hidden">
-          · ภาควิชาการประชาสัมพันธ์ · คณะนิเทศศาสตร์ จุฬาฯ
-        </div>
-        
-        <div class="text-xs text-slate-600">
-          Powered by Chula Unisearch
-        </div>
+/* ── static sections from config ── */
+function renderConfig(){
+  const {expert, projectLead, why, howto, payment, contact} = CONFIG;
+
+  document.getElementById('expert-name').textContent = expert.name;
+  document.getElementById('expert-creds').innerHTML = expert.credentials.map(c =>
+    `<li class="pl-5 relative text-[15px] leading-relaxed before:content-[''] before:absolute before:left-0 before:top-[.75em] before:w-2 before:h-px before:bg-chula">${esc(c)}</li>`).join('');
+  const ei = document.getElementById('expert-img');
+  ei.onerror = () => { ei.onerror = null; ei.src = PLACEHOLDER; };
+  document.getElementById('lead-name').textContent = projectLead.name + ' · ' + projectLead.title;
+  document.getElementById('lead-title').textContent = projectLead.affiliation;
+
+  document.getElementById('why-list').innerHTML = why.map(w =>
+    `<div><h3 class="font-display font-600 text-xl mb-3">${esc(w.title)}</h3>
+     <p class="text-ink-soft text-[15px] leading-relaxed">${esc(w.body)}</p></div>`).join('');
+
+  document.getElementById('howto-list').innerHTML = howto.map((h,i) =>
+    `<li><p class="font-display font-600 text-3xl text-chula-light mb-3">${i+1}</p>
+     <h3 class="font-display font-600 text-[17px] mb-2 leading-snug">${esc(h.title)}</h3>
+     <p class="text-ink-soft text-[15px] leading-relaxed">${esc(h.body)}</p></li>`).join('');
+
+  document.getElementById('payment-details').innerHTML = `
+    <div class="flex gap-3"><dt class="text-ink-faint w-24 shrink-0">ธนาคาร</dt><dd>${esc(payment.bank)}</dd></div>
+    <div class="flex gap-3"><dt class="text-ink-faint w-24 shrink-0">ชื่อบัญชี</dt><dd>${esc(payment.accountName)}</dd></div>
+    <div class="flex gap-3"><dt class="text-ink-faint w-24 shrink-0">เลขที่บัญชี</dt>
+      <dd class="font-display font-600 text-lg tracking-wide">${esc(payment.accountNumber)}</dd></div>`;
+
+  document.getElementById('contact-org').textContent = contact.org + ' · ' + contact.hours;
+  document.getElementById('contact-address').textContent = contact.address;
+  document.getElementById('contact-people').innerHTML = contact.people.map(p => `
+    <div class="border border-rule rounded-sm p-6">
+      <p class="font-display font-600 text-[17px] mb-4">${esc(p.name)}</p>
+      <div class="flex flex-wrap gap-2.5">
+        <a href="tel:${esc(p.phone)}" class="bg-chula text-white px-5 py-2.5 rounded-full font-display font-500 text-[15px] hover:bg-chula-dark transition">
+          โทร ${esc(p.phoneLabel)}</a>
+        ${p.line ? `<a href="https://line.me/ti/p/~${esc(p.line)}" target="_blank" rel="noopener"
+          class="border border-chula text-chula-dark px-5 py-2.5 rounded-full font-display font-500 text-[15px] hover:bg-chula-pale transition">
+          ไลน์ ${esc(p.line)}</a>` : ''}
       </div>
-    </div>
-  </footer>
+    </div>`).join('');
+}
 
+/* ── boot ── */
+(async function(){
+  skeleton();
+  try {
+    const [cRes, gRes] = await Promise.all([fetch('courses.json'), fetch('config.json')]);
+    if (!cRes.ok || !gRes.ok) throw new Error('fetch failed');
+    COURSES = (await cRes.json()).courses;
+    CONFIG  = await gRes.json();
+  } catch (e) {
+    console.error(e); failure(); return;
+  }
+  renderConfig();
+  renderProgramme();
+  renderFilters();
+  renderCourses();
+
+  document.getElementById('filters').addEventListener('click', ev => {
+    const btn = ev.target.closest('[data-filter]');
+    if (!btn) return;
+    activeFilter = btn.dataset.filter;
+    renderFilters();
+    renderCourses();
+  });
+})();
+</script>
 </body>
 </html>
