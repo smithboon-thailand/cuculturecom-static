@@ -270,12 +270,12 @@ tailwind.config = {
   </div>
 </footer>
 
-<a id="fab" href="https://line.me/ti/p/~suthee_him" target="_blank" rel="noopener"
+<a id="fab" href="https://lin.ee/ZnDkcga" target="_blank" rel="noopener"
    class="fab btn-sheen bg-[#06C755] text-white pl-4 pr-5 py-3 rounded-full font-display font-semibold shadow-lg shadow-black/25 flex items-center gap-2.5 hover:brightness-110 transition">
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M12 2C6.5 2 2 5.7 2 10.2c0 4 3.6 7.4 8.4 8.05.33.07.78.22.9.5.1.26.07.66.03.92l-.14.87c-.05.26-.2 1.02.9.56 1.1-.46 5.9-3.48 8.05-5.95C21.6 13.5 22 11.9 22 10.2 22 5.7 17.5 2 12 2z"/>
   </svg>
-  <span class="text-[15px]">สอบถามทาง LINE</span>
+  <span class="text-[15px]">แอดไลน์ทางการ</span>
 </a>
 
 <script>
@@ -451,14 +451,18 @@ function renderConfig(){
     (p.line ? '<a href="https://line.me/ti/p/~' + esc(p.line) + '" target="_blank" rel="noopener" class="border border-chula text-chula-dark px-5 py-2.5 rounded-full font-display font-medium text-[15px] hover:bg-chula-pale transition">ไลน์ ' + esc(p.line) + '</a>' : '') +
     '</div></div>').join('');
 
-  const qr = contact.lineQr;
-  document.getElementById('qr-box').innerHTML = qr ?
-    '<div class="border border-rule rounded-sm p-6 bg-white text-center w-[16.5rem]">' +
-    '<p class="font-display font-semibold text-[15px] mb-4">' + esc(qr.label) + '</p>' +
-    '<a href="' + esc(qr.url) + '" target="_blank" rel="noopener" class="block group">' +
-    '<img src="' + esc(qr.image) + '" alt="คิวอาร์โค้ดสำหรับเพิ่มเพื่อนใน LINE บัญชี ' + esc(qr.account) + '" width="200" height="200" loading="lazy" class="w-full max-w-[11.5rem] mx-auto rounded-sm transition-transform duration-500 group-hover:scale-[1.04]"></a>' +
-    '<p class="mt-4 text-ink-faint text-sm">ID LINE</p><p class="font-display font-medium">' + esc(qr.account) + '</p>' +
-    '<a href="' + esc(qr.url) + '" target="_blank" rel="noopener" class="btn-sheen mt-5 inline-block bg-[#06C755] text-white px-5 py-2.5 rounded-full font-display font-medium text-[15px] hover:brightness-110 transition">เปิดใน LINE</a></div>' : '';
+  const oa = contact.lineOA;
+  document.getElementById('qr-box').innerHTML = oa ?
+    '<div class="border-2 border-[#06C755]/30 rounded-sm p-7 bg-white text-center w-[17.5rem] shadow-lg shadow-[#06C755]/10">' +
+    '<div class="flex items-center justify-center gap-2 mb-1"><svg width="20" height="20" viewBox="0 0 24 24" fill="#06C755" aria-hidden="true"><path d="M12 2C6.5 2 2 5.7 2 10.2c0 4 3.6 7.4 8.4 8.05.33.07.78.22.9.5.1.26.07.66.03.92l-.14.87c-.05.26-.2 1.02.9.56 1.1-.46 5.9-3.48 8.05-5.95C21.6 13.5 22 11.9 22 10.2 22 5.7 17.5 2 12 2z"/></svg>' +
+    '<span class="font-display font-semibold text-[15px]">LINE Official Account</span></div>' +
+    '<p class="text-ink-soft text-sm mb-5">' + esc(oa.label) + '</p>' +
+    '<a href="' + esc(oa.url) + '" target="_blank" rel="noopener" class="block group">' +
+    '<img src="' + esc(oa.image) + '" alt="คิวอาร์โค้ดสำหรับแอดไลน์ทางการ ' + esc(oa.name) + '" width="200" height="200" loading="lazy" class="w-full max-w-[11.5rem] mx-auto transition-transform duration-500 group-hover:scale-[1.05]"></a>' +
+    '<p class="mt-5 font-display font-medium">' + esc(oa.name) + '</p>' +
+    '<p class="text-ink-faint text-sm">' + esc(oa.accountId) + '</p>' +
+    '<a href="' + esc(oa.url) + '" target="_blank" rel="noopener" class="btn-sheen mt-5 inline-block w-full bg-[#06C755] text-white px-5 py-3 rounded-full font-display font-semibold text-[15px] hover:brightness-110 transition">แอดไลน์ทางการ</a>' +
+    '<p class="mt-3 text-ink-faint text-xs leading-relaxed">เปิดจากมือถือ กดปุ่มได้เลย<br>เปิดจากคอมพิวเตอร์ ใช้มือถือสแกน</p></div>' : '';
 }
 
 (async function(){

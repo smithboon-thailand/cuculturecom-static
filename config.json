@@ -15,7 +15,7 @@
         "name": "คุณสุธี เวสารัชกิตติ",
         "phone": "0963236999",
         "phoneLabel": "096 323 6999",
-        "line": "suthee_him"
+        "line": ""
       },
       {
         "name": "คุณธัชพล เหล่าแสนสุข",
@@ -24,11 +24,12 @@
         "line": ""
       }
     ],
-    "lineQr": {
-      "image": "line-qr.svg",
-      "url": "https://line.me/ti/p/~suthee_him",
-      "label": "สแกนเพื่อเพิ่มเพื่อนใน LINE",
-      "account": "suthee_him"
+    "lineOA": {
+      "image": "line-oa-qr.png",
+      "url": "https://lin.ee/ZnDkcga",
+      "accountId": "@006dwxgz",
+      "name": "สื่อสารเชิงวัฒนธรรม จุฬาฯ",
+      "label": "แอดไลน์ทางการเพื่อสอบถามและสมัคร"
     }
   },
   "payment": {
