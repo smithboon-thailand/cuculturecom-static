@@ -360,7 +360,9 @@ function renderProgramme(){
         '<div class="min-w-0"><p class="font-display font-medium text-[17px] leading-snug">' + esc(r.course.shortTitle) + '</p>' +
         '<p class="text-ink-soft text-sm mt-1">' + esc(r.time) + ' · ' + esc(r.course.capacityLabel) + (r.note ? ' · '+esc(r.note) : '') + '</p></div>' +
         '<div class="flex items-center gap-4 sm:justify-end"><span class="accession text-chula-dark shrink-0">' + esc(r.batchCode) + '</span>' +
-        '<span class="font-display font-semibold text-lg whitespace-nowrap">' + esc(r.course.priceLabel) + '</span></div></li>').join('') +
+        '<span class="font-display font-semibold text-lg whitespace-nowrap">' + esc(r.course.priceLabel) + '</span>' +
+        '<a href="register.html?batch=' + encodeURIComponent(r.batchCode) + '" class="btn-sheen bg-chula text-white px-4 py-2 rounded-full font-display font-medium text-[15px] hover:bg-chula-dark transition whitespace-nowrap">สมัคร</a>' +
+        '</div></li>').join('') +
     '</ul></div>').join('');
   watch(box);
 }
@@ -394,7 +396,9 @@ function renderCourses(){
         : '<p class="text-ink-soft text-[15px]">รอประกาศกำหนดการรุ่นถัดไป</p>';
     const action = done
       ? '<span class="text-ink-faint text-[15px]">จัดเสร็จสิ้นแล้ว</span>'
-      : '<a href="#contact" class="btn-sheen bg-chula text-white px-5 py-2.5 rounded-full font-display font-medium text-[15px] hover:bg-chula-dark transition">' + (live.length ? 'สมัครเรียน' : 'สอบถามรุ่นถัดไป') + '</a>';
+      : live.length
+        ? '<a href="register.html?batch=' + encodeURIComponent(live[0].batchCode) + '" class="btn-sheen bg-chula text-white px-5 py-2.5 rounded-full font-display font-medium text-[15px] hover:bg-chula-dark transition">สมัครเรียน</a>'
+        : '<a href="#contact" class="btn-sheen bg-chula text-white px-5 py-2.5 rounded-full font-display font-medium text-[15px] hover:bg-chula-dark transition">สอบถามรุ่นถัดไป</a>';
     return '<article id="course-' + esc(c.id) + '" class="rv card border border-rule rounded-sm overflow-hidden bg-white flex flex-col ' + (done?'opacity-70':'') + '" style="transition-delay:' + (Math.min(i,5)*70) + 'ms">' +
       '<div class="shot relative"><img src="' + esc(c.image) + '" alt="ภาพประกอบหลักสูตร ' + esc(c.shortTitle) + '" width="1200" height="675" loading="lazy" class="w-full aspect-[16/9] object-cover bg-chula-pale ' + (done?'grayscale':'') + '" onerror="this.onerror=null;this.src=\'' + PLACEHOLDER + '\'">' +
       '<span class="absolute top-3 right-3 ' + st.cls + ' text-white text-xs font-display font-medium px-3 py-1.5 rounded-full shadow-sm">' + esc(st.label) + '</span></div>' +

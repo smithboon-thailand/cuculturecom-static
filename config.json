@@ -39,10 +39,10 @@
     "note": "กรุณาระบุรหัสรุ่นทุกครั้งที่ส่งหลักฐานการโอนเงิน"
   },
   "registrationForm": {
-    "enabled": false,
-    "baseUrl": "",
-    "prefillParam": "",
-    "fallbackLine": "https://line.me/ti/p/~suthee_him"
+    "enabled": true,
+    "endpoint": "https://script.google.com/macros/s/AKfycbzVDyJiIGpCd4PcZhBl6h_YFFGv73coKfK0ta4a2tqNrzKwHu-qND6Zpqqvd-G0zKG3/exec",
+    "secret": "cuc-2569-At1zktJwJ8gt",
+    "sheetUrl": "https://docs.google.com/spreadsheets/d/1jwqLQo0NBPbD6cBnIbX3lOhVkIbs28j9dRfHSu2CNyA/edit"
   },
   "expert": {
     "name": "ศาสตราจารย์เกียรติคุณ ดร. หม่อมราชวงศ์สุริยวุฒิ สุขสวัสดิ์",

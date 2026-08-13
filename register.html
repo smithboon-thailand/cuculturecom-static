@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สมัครเรียน · สื่อสารเชิงวัฒนธรรม จุฬาลงกรณ์มหาวิทยาลัย</title>
+<meta name="description" content="สมัครเรียนหลักสูตรอบรมและทัศนศึกษา คณะนิเทศศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon-64.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: {
+    chula:{DEFAULT:'#DE5C8E',dark:'#A63A63',mid:'#C4436F',light:'#F5C2D5',pale:'#FDF2F6'},
+    ink:{DEFAULT:'#241C26',soft:'#5C4F60',faint:'#8B7F8E'},
+    paper:'#FBF9FA', rule:'#E8DFE4'
+  },
+  fontFamily:{display:['Prompt','sans-serif'],body:['Sarabun','sans-serif']},
+  maxWidth:{content:'48rem'}
+}}}
+</script>
+<style>
+  body{background:#FBF9FA;color:#241C26;font-family:'Sarabun',sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.font-display{font-family:'Prompt',sans-serif;line-height:1.35}
+  body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.03;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .accession{font-family:'Prompt',sans-serif;font-weight:500;font-size:.8125rem;letter-spacing:.06em;
+    border:1px solid currentColor;border-radius:2px;padding:.15rem .5rem;display:inline-block;line-height:1.5}
+  label{display:block;font-family:'Prompt',sans-serif;font-weight:500;font-size:15px;margin-bottom:.4rem}
+  .req::after{content:' *';color:#A63A63}
+  input[type=text],input[type=tel],input[type=email],select,textarea{
+    width:100%;border:1px solid #E8DFE4;border-radius:4px;padding:.7rem .9rem;font-size:16px;
+    font-family:'Sarabun',sans-serif;background:#fff;transition:border-color .2s,box-shadow .2s}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:#DE5C8E;box-shadow:0 0 0 3px rgba(222,92,142,.15)}
+  input[aria-invalid=true],select[aria-invalid=true]{border-color:#C2410C}
+  .err{color:#C2410C;font-size:14px;margin-top:.3rem;display:none}
+  .err.on{display:block}
+  fieldset{border:0;padding:0;margin:0}
+  .radio-row{display:flex;gap:.75rem;flex-wrap:wrap}
+  .radio-opt{flex:1;min-width:8rem}
+  .radio-opt input{position:absolute;opacity:0;width:0;height:0}
+  .radio-opt span{display:block;text-align:center;border:1px solid #E8DFE4;border-radius:4px;
+    padding:.7rem;cursor:pointer;background:#fff;transition:all .2s;font-family:'Prompt',sans-serif;font-weight:500}
+  .radio-opt input:checked + span{background:#DE5C8E;border-color:#DE5C8E;color:#fff}
+  .radio-opt input:focus-visible + span{outline:2px solid #A63A63;outline-offset:2px}
+  .hide{display:none}
+  :focus-visible{outline:2px solid #A63A63;outline-offset:3px;border-radius:2px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="bg-white border-b border-rule">
+  <div class="max-w-content mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 min-w-0">
+      <img src="icon-clean.png" alt="" width="30" height="30" class="w-[30px] h-[30px] object-contain shrink-0" onerror="this.style.display='none'">
+      <span class="font-display font-semibold text-[15px] truncate">สื่อสารเชิงวัฒนธรรม</span>
+    </a>
+    <a href="index.html" class="text-[15px] text-chula-dark hover:underline">กลับหน้าหลัก</a>
+  </div>
+</header>
+
+<main class="max-w-content mx-auto px-5 sm:px-8 py-12 sm:py-16">
+
+  <!-- ── FORM VIEW ── -->
+  <div id="view-form">
+    <p class="font-display text-[11px] tracking-[.24em] text-chula-dark mb-3">ใบสมัคร</p>
+    <h1 class="font-display font-semibold text-3xl sm:text-4xl mb-3">สมัครเรียน</h1>
+    <p class="text-ink-soft text-[15px] mb-8">
+      กรอกข้อมูลให้ครบถ้วน ใช้เวลาประมาณ 3 นาที ช่องที่มีเครื่องหมาย <span class="text-chula-dark">*</span> จำเป็นต้องกรอก
+    </p>
+
+    <!-- course summary -->
+    <div id="course-box" class="border border-chula-light bg-chula-pale rounded-sm p-6 mb-10"></div>
+
+    <form id="reg-form" novalidate>
+
+      <!-- ── ข้อมูลผู้สมัคร ── -->
+      <h2 class="font-display font-semibold text-xl mb-1">ข้อมูลผู้สมัคร</h2>
+      <p class="text-ink-faint text-sm mb-6">ใช้สำหรับติดต่อยืนยันที่นั่งและออกใบรับรอง</p>
+
+      <div class="grid sm:grid-cols-[8rem_1fr] gap-5 mb-5">
+        <div>
+          <label for="prefix" class="req">คำนำหน้า</label>
+          <select id="prefix" name="prefix" required>
+            <option value="">เลือก</option>
+            <option>นาย</option><option>นาง</option><option>นางสาว</option>
+            <option>ดร.</option><option>ผศ.</option><option>รศ.</option><option>ศ.</option>
+            <option>อื่นๆ</option>
+          </select>
+        </div>
+        <div>
+          <label for="fullName" class="req">ชื่อ นามสกุล</label>
+          <input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="ชื่อและนามสกุลตามบัตรประชาชน">
+          <p class="err" data-for="fullName">กรุณากรอกชื่อและนามสกุล</p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5 mb-5">
+        <div>
+          <label for="nickname">ชื่อเล่น</label>
+          <input type="text" id="nickname" name="nickname" placeholder="สำหรับเรียกในชั้นเรียน">
+        </div>
+        <div>
+          <label for="phone" class="req">เบอร์โทรศัพท์</label>
+          <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="numeric" placeholder="08X XXX XXXX">
+          <p class="err" data-for="phone">กรุณากรอกเบอร์โทรศัพท์ 9 ถึง 10 หลัก</p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5 mb-5">
+        <div>
+          <label for="email" class="req">อีเมล</label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="name@example.com">
+          <p class="err" data-for="email">กรุณากรอกอีเมลให้ถูกต้อง</p>
+        </div>
+        <div>
+          <label for="lineId">ID LINE</label>
+          <input type="text" id="lineId" name="lineId" placeholder="ถ้ามี">
+        </div>
+      </div>
+
+      <!-- ── ข้อมูลพื้นฐาน ── -->
+      <h2 class="font-display font-semibold text-xl mt-12 mb-1">ข้อมูลพื้นฐาน</h2>
+      <p class="text-ink-faint text-sm mb-6">ใช้เพื่อพัฒนาหลักสูตรให้เหมาะกับผู้เรียน ไม่เปิดเผยรายบุคคล</p>
+
+      <div class="grid sm:grid-cols-2 gap-5 mb-5">
+        <div>
+          <label for="ageRange" class="req">ช่วงอายุ</label>
+          <select id="ageRange" name="ageRange" required>
+            <option value="">เลือก</option>
+            <option>ต่ำกว่า 20 ปี</option><option>20 ถึง 29 ปี</option>
+            <option>30 ถึง 39 ปี</option><option>40 ถึง 49 ปี</option>
+            <option>50 ถึง 59 ปี</option><option>60 ปีขึ้นไป</option>
+          </select>
+        </div>
+        <div>
+          <label for="gender">เพศ</label>
+          <select id="gender" name="gender">
+            <option value="">ไม่ระบุ</option>
+            <option>ชาย</option><option>หญิง</option><option>อื่นๆ</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5 mb-5">
+        <div>
+          <label for="education" class="req">ระดับการศึกษาสูงสุด</label>
+          <select id="education" name="education" required>
+            <option value="">เลือก</option>
+            <option>ต่ำกว่าปริญญาตรี</option><option>ปริญญาตรี</option>
+            <option>ปริญญาโท</option><option>ปริญญาเอก</option>
+          </select>
+        </div>
+        <div>
+          <label for="occupation" class="req">อาชีพ</label>
+          <input type="text" id="occupation" name="occupation" required placeholder="เช่น มัคคุเทศก์ ครู ข้าราชการ">
+          <p class="err" data-for="occupation">กรุณากรอกอาชีพ</p>
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <label for="organization">หน่วยงานหรือบริษัท</label>
+        <input type="text" id="organization" name="organization" placeholder="ถ้ามี">
+      </div>
+
+      <!-- ── มัคคุเทศก์ ── -->
+      <h2 class="font-display font-semibold text-xl mt-12 mb-1">ข้อมูลวิชาชีพมัคคุเทศก์</h2>
+      <p class="text-ink-faint text-sm mb-6">เพื่อจัดเนื้อหาให้เหมาะกับพื้นฐานของผู้เรียนแต่ละรุ่น</p>
+
+      <fieldset class="mb-5">
+        <legend class="font-display font-medium text-[15px] mb-2 req" style="display:block">ท่านเป็นมัคคุเทศก์หรือไม่</legend>
+        <div class="radio-row">
+          <label class="radio-opt"><input type="radio" name="isGuide" value="เป็นมัคคุเทศก์" required><span>เป็น</span></label>
+          <label class="radio-opt"><input type="radio" name="isGuide" value="ไม่เป็นมัคคุเทศก์"><span>ไม่เป็น</span></label>
+          <label class="radio-opt"><input type="radio" name="isGuide" value="กำลังเรียนมัคคุเทศก์"><span>กำลังเรียน</span></label>
+        </div>
+        <p class="err" data-for="isGuide">กรุณาเลือก</p>
+      </fieldset>
+
+      <div id="guide-fields" class="hide grid sm:grid-cols-2 gap-5 mb-5">
+        <div>
+          <label for="guideLicense">เลขที่บัตรมัคคุเทศก์</label>
+          <input type="text" id="guideLicense" name="guideLicense">
+        </div>
+        <div>
+          <label for="guideSchool">สถาบันที่อบรมมัคคุเทศก์</label>
+          <input type="text" id="guideSchool" name="guideSchool">
+        </div>
+      </div>
+
+      <!-- ── ประสบการณ์กับเรา ── -->
+      <h2 class="font-display font-semibold text-xl mt-12 mb-1">ประสบการณ์กับหลักสูตรของเรา</h2>
+      <p class="text-ink-faint text-sm mb-6">ช่วยให้เราวางแผนหลักสูตรต่อเนื่องได้ดีขึ้น</p>
+
+      <fieldset class="mb-5">
+        <legend class="font-display font-medium text-[15px] mb-2 req" style="display:block">เคยเรียนหลักสูตรของเรามาก่อนหรือไม่</legend>
+        <div class="radio-row">
+          <label class="radio-opt"><input type="radio" name="studiedBefore" value="เคยเรียนมาก่อน" required><span>เคยเรียน</span></label>
+          <label class="radio-opt"><input type="radio" name="studiedBefore" value="ยังไม่เคยเรียน"><span>ยังไม่เคย</span></label>
+        </div>
+        <p class="err" data-for="studiedBefore">กรุณาเลือก</p>
+      </fieldset>
+
+      <div id="prev-fields" class="hide mb-5">
+        <label for="previousCourses">หลักสูตรที่เคยเรียน</label>
+        <input type="text" id="previousCourses" name="previousCourses" placeholder="เช่น พระอารามหลวง รุ่น 9">
+      </div>
+
+      <div class="mb-5">
+        <label for="heardFrom" class="req">ท่านรู้จักหลักสูตรนี้จากช่องทางใด</label>
+        <select id="heardFrom" name="heardFrom" required>
+          <option value="">เลือก</option>
+          <option>LINE Official Account</option>
+          <option>เว็บไซต์ของเรา</option>
+          <option>Facebook</option>
+          <option>เพื่อนหรือคนรู้จักแนะนำ</option>
+          <option>เคยเรียนหลักสูตรอื่นของเรา</option>
+          <option>ค้นหาใน Google</option>
+          <option>สื่อของจุฬาลงกรณ์มหาวิทยาลัย</option>
+          <option>อื่นๆ</option>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <label for="expectation">ท่านคาดหวังอะไรจากหลักสูตรนี้</label>
+        <textarea id="expectation" name="expectation" rows="3"
+          placeholder="เช่น อยากนำความรู้ไปใช้นำเที่ยว อยากเข้าใจศิลปะไทยให้ลึกขึ้น"></textarea>
+        <p class="text-ink-faint text-sm mt-1.5">คำตอบนี้ช่วยให้วิทยากรเตรียมเนื้อหาให้ตรงกับที่ท่านต้องการ</p>
+      </div>
+
+      <div class="mb-5">
+        <label for="dietary">ข้อจำกัดด้านอาหารหรือสุขภาพ</label>
+        <input type="text" id="dietary" name="dietary" placeholder="เช่น มังสวิรัติ แพ้อาหารทะเล เดินไกลไม่ไหว">
+        <p class="text-ink-faint text-sm mt-1.5">โดยเฉพาะหลักสูตรทัศนศึกษาที่ต้องเดินและขึ้นลงรถ</p>
+      </div>
+
+      <!-- ── PDPA ── -->
+      <div class="mt-12 border border-rule rounded-sm p-6 bg-white">
+        <h2 class="font-display font-semibold text-lg mb-4">ความยินยอมในการเก็บข้อมูลส่วนบุคคล</h2>
+        <div class="text-[15px] leading-relaxed text-ink-soft space-y-3 mb-5">
+          <p>
+            ภาควิชาการประชาสัมพันธ์ คณะนิเทศศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
+            ร่วมกับศูนย์บริการวิชาการแห่งจุฬาลงกรณ์มหาวิทยาลัย
+            เก็บรวบรวมข้อมูลของท่านเพื่อวัตถุประสงค์ดังนี้
+          </p>
+          <ul class="space-y-1.5 pl-5">
+            <li class="relative before:content-['—'] before:absolute before:-left-5">ติดต่อยืนยันที่นั่งและแจ้งรายละเอียดการเรียน</li>
+            <li class="relative before:content-['—'] before:absolute before:-left-5">จัดทำใบรับรองและวุฒิบัตร</li>
+            <li class="relative before:content-['—'] before:absolute before:-left-5">ประเมินและพัฒนาคุณภาพหลักสูตร โดยรายงานในภาพรวม ไม่ระบุตัวบุคคล</li>
+            <li class="relative before:content-['—'] before:absolute before:-left-5">แจ้งข่าวหลักสูตรที่เกี่ยวข้องในอนาคต</li>
+          </ul>
+          <p>
+            ข้อมูลจะถูกเก็บไว้ไม่เกิน 3 ปีนับจากวันสิ้นสุดหลักสูตร
+            ท่านมีสิทธิขอเข้าถึง แก้ไข หรือขอให้ลบข้อมูลของท่านได้ตลอดเวลา
+            โดยติดต่อ 096 323 6999 หรือทาง LINE Official Account ของเรา
+          </p>
+        </div>
+        <label class="flex items-start gap-3 cursor-pointer">
+          <input type="checkbox" id="consent" name="consent" required
+                 class="mt-1.5 w-5 h-5 accent-[#DE5C8E] shrink-0">
+          <span class="font-body font-normal text-[15px] leading-relaxed">
+            ข้าพเจ้าได้อ่านและยินยอมให้เก็บรวบรวมและใช้ข้อมูลส่วนบุคคลตามวัตถุประสงค์ข้างต้น
+          </span>
+        </label>
+        <p class="err" data-for="consent">กรุณาให้ความยินยอมก่อนส่งใบสมัคร</p>
+      </div>
+
+      <div id="form-error" class="hide mt-6 border border-[#C2410C] bg-orange-50 rounded-sm p-5">
+        <p class="font-display font-semibold text-[#C2410C] mb-1">ส่งใบสมัครไม่สำเร็จ</p>
+        <p id="form-error-msg" class="text-[15px]"></p>
+      </div>
+
+      <button type="submit" id="submit-btn"
+        class="mt-8 w-full bg-chula text-white px-8 py-4 rounded-full font-display font-semibold text-lg hover:bg-chula-dark transition disabled:opacity-60 disabled:cursor-not-allowed">
+        ส่งใบสมัคร
+      </button>
+      <p class="mt-4 text-center text-ink-faint text-sm">
+        ส่งแล้วจะมีขั้นตอนการชำระเงินแสดงในหน้าถัดไป
+      </p>
+    </form>
+  </div>
+
+  <!-- ── SUCCESS VIEW ── -->
+  <div id="view-done" class="hide"></div>
+
+</main>
+
+<footer class="bg-ink text-white/70 py-10 mt-16">
+  <div class="max-w-content mx-auto px-5 sm:px-8 text-sm">
+    <p class="font-display font-semibold text-white">สื่อสารเชิงวัฒนธรรม จุฬาลงกรณ์มหาวิทยาลัย</p>
+    <p class="mt-2 leading-relaxed">ภาควิชาการประชาสัมพันธ์ คณะนิเทศศาสตร์ · ศูนย์บริการวิชาการแห่งจุฬาลงกรณ์มหาวิทยาลัย</p>
+  </div>
+</footer>
+
+<script>
+const esc = s => String(s??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $ = id => document.getElementById(id);
+let CONFIG = {}, COURSE = null, BATCH = null;
+
+function showErr(name, on){
+  const el = document.querySelector('.err[data-for="'+name+'"]');
+  if (el) el.classList.toggle('on', on);
+  const f = $(name); if (f) f.setAttribute('aria-invalid', on ? 'true' : 'false');
+}
+
+(async function init(){
+  const p = new URLSearchParams(location.search);
+  const wanted = p.get('batch') || '';
+  try {
+    const r = await Promise.all([fetch('courses.json'), fetch('config.json')]);
+    const courses = (await r[0].json()).courses;
+    CONFIG = await r[1].json();
+    for (const c of courses){
+      const b = (c.batches||[]).find(x => x.batchCode === wanted);
+      if (b){ COURSE = c; BATCH = b; break; }
+    }
+  } catch(e){ console.error(e); }
+  renderCourseBox();
+})();
+
+function renderCourseBox(){
+  const box = $('course-box');
+  if (!COURSE || !BATCH){
+    box.innerHTML =
+      '<p class="font-display font-semibold mb-2">ยังไม่ได้เลือกรุ่น</p>' +
+      '<p class="text-[15px] text-ink-soft mb-4">กรุณากลับไปเลือกรุ่นที่ต้องการสมัครจากหน้าตารางรุ่นก่อน</p>' +
+      '<a href="index.html#programme" class="inline-block bg-chula text-white px-6 py-3 rounded-full font-display font-medium text-[15px]">ดูตารางรุ่น</a>';
+    $('reg-form').classList.add('hide');
+    return;
+  }
+  box.innerHTML =
+    '<p class="text-ink-faint text-sm mb-1">หลักสูตรที่สมัคร</p>' +
+    '<p class="font-display font-semibold text-xl leading-snug mb-3">' + esc(COURSE.shortTitle) + '</p>' +
+    '<div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-[15px]">' +
+      '<span class="accession text-chula-dark">' + esc(BATCH.batchCode) + '</span>' +
+      '<span>รุ่น ' + esc(BATCH.batchNo) + '</span>' +
+      '<span>' + esc(BATCH.dates) + '</span>' +
+      '<span>' + esc(BATCH.time) + '</span>' +
+      '<span class="font-display font-semibold">' + esc(COURSE.priceLabel) + '</span>' +
+    '</div>' +
+    '<p class="mt-3 text-ink-soft text-sm">' + esc(COURSE.venue) + ' · ' + esc(COURSE.capacityLabel) + '</p>';
+}
+
+// conditional fields
+document.querySelectorAll('input[name=isGuide]').forEach(el =>
+  el.addEventListener('change', () =>
+    $('guide-fields').classList.toggle('hide', el.value === 'ไม่เป็นมัคคุเทศก์')));
+document.querySelectorAll('input[name=studiedBefore]').forEach(el =>
+  el.addEventListener('change', () =>
+    $('prev-fields').classList.toggle('hide', el.value !== 'เคยเรียนมาก่อน')));
+
+$('reg-form').addEventListener('submit', async ev => {
+  ev.preventDefault();
+  $('form-error').classList.add('hide');
+
+  const f = new FormData(ev.target);
+  const get = k => (f.get(k) || '').toString().trim();
+
+  let bad = null;
+  const phone = get('phone').replace(/[^0-9]/g,'');
+  const checks = [
+    ['fullName', get('fullName').length >= 3],
+    ['phone', phone.length >= 9 && phone.length <= 10],
+    ['email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(get('email'))],
+    ['occupation', get('occupation').length >= 2],
+    ['isGuide', !!get('isGuide')],
+    ['studiedBefore', !!get('studiedBefore')],
+    ['consent', !!f.get('consent')]
+  ];
+  checks.forEach(([n, ok]) => { showErr(n, !ok); if (!ok && !bad) bad = n; });
+  ['prefix','ageRange','education','heardFrom'].forEach(n => {
+    const ok = !!get(n); $(n).setAttribute('aria-invalid', ok?'false':'true'); if (!ok && !bad) bad = n;
+  });
+  if (bad){ ($(bad)||document.querySelector('[name='+bad+']')).scrollIntoView({block:'center',behavior:'smooth'}); return; }
+
+  const btn = $('submit-btn');
+  btn.disabled = true; btn.textContent = 'กำลังส่ง...';
+
+  const payload = {
+    secret: (CONFIG.registrationForm && CONFIG.registrationForm.secret) || '',
+    batchCode: BATCH.batchCode, courseTitle: COURSE.title, batchDates: BATCH.dates,
+    prefix:get('prefix'), fullName:get('fullName'), nickname:get('nickname'),
+    phone: phone, email:get('email'), lineId:get('lineId'),
+    ageRange:get('ageRange'), gender:get('gender'), education:get('education'),
+    occupation:get('occupation'), organization:get('organization'),
+    isGuide:get('isGuide'), guideLicense:get('guideLicense'), guideSchool:get('guideSchool'),
+    studiedBefore:get('studiedBefore'), previousCourses:get('previousCourses'),
+    heardFrom:get('heardFrom'), expectation:get('expectation'), dietary:get('dietary'),
+    consent: 'ยินยอม'
+  };
+
+  try {
+    const url = CONFIG.registrationForm && CONFIG.registrationForm.endpoint;
+    if (!url) throw new Error('no endpoint');
+    const res = await fetch(url, {
+      method:'POST', mode:'cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},   // เลี่ยง CORS preflight
+      body: JSON.stringify(payload)
+    });
+    const out = await res.json();
+    if (!out.ok) throw new Error(out.error || 'failed');
+    done(out.memberCode || '');
+  } catch (e) {
+    console.error(e);
+    btn.disabled = false; btn.textContent = 'ส่งใบสมัคร';
+    $('form-error-msg').textContent =
+      'กรุณาลองใหม่อีกครั้ง หากยังไม่สำเร็จ โทร 096 323 6999 หรือทักไลน์ทางการของเราได้เลย เจ้าหน้าที่รับสมัครให้ทางโทรศัพท์ได้';
+    $('form-error').classList.remove('hide');
+    $('form-error').scrollIntoView({block:'center',behavior:'smooth'});
+  }
+});
+
+function done(memberCode){
+  const pay = CONFIG.payment || {};
+  const oa  = (CONFIG.contact && CONFIG.contact.lineOA) || {};
+  $('view-form').classList.add('hide');
+  const v = $('view-done');
+  v.classList.remove('hide');
+  v.innerHTML =
+    '<div class="text-center mb-10">' +
+      '<div class="w-16 h-16 rounded-full bg-chula-pale border-2 border-chula flex items-center justify-center mx-auto mb-5">' +
+        '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#A63A63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>' +
+      '</div>' +
+      '<h1 class="font-display font-semibold text-3xl mb-3">ได้รับใบสมัครแล้ว</h1>' +
+      '<p class="text-ink-soft text-[15px]">ยังไม่ถือว่าสมัครสมบูรณ์จนกว่าจะชำระเงินและส่งหลักฐาน</p>' +
+    '</div>' +
+
+    '<div class="border border-chula-light bg-chula-pale rounded-sm p-6 mb-8 text-center">' +
+      '<p class="text-ink-soft text-sm mb-1">รหัสรุ่นที่ท่านสมัคร</p>' +
+      '<p class="font-display font-semibold text-2xl text-chula-dark mb-4">' + esc(BATCH.batchCode) + '</p>' +
+      (memberCode ? '<p class="text-ink-soft text-sm mb-1">รหัสสมาชิกของท่าน</p>' +
+        '<p class="font-display font-semibold text-lg">' + esc(memberCode) + '</p>' : '') +
+    '</div>' +
+
+    '<h2 class="font-display font-semibold text-xl mb-5">ขั้นตอนต่อไป</h2>' +
+
+    '<ol class="space-y-6 mb-10">' +
+      '<li class="flex gap-4">' +
+        '<span class="font-display font-semibold text-2xl text-chula-light shrink-0 w-8">1</span>' +
+        '<div><p class="font-display font-semibold mb-2">โอนค่าลงทะเบียน ' + esc(COURSE.priceLabel) + '</p>' +
+        '<div class="border border-rule rounded-sm p-4 bg-white text-[15px] space-y-1">' +
+          '<p>' + esc(pay.bank||'') + '</p>' +
+          '<p>ชื่อบัญชี ' + esc(pay.accountName||'') + '</p>' +
+          '<p class="font-display font-semibold text-lg tracking-wide">' + esc(pay.accountNumber||'') + '</p>' +
+        '</div></div></li>' +
+
+      '<li class="flex gap-4">' +
+        '<span class="font-display font-semibold text-2xl text-chula-light shrink-0 w-8">2</span>' +
+        '<div><p class="font-display font-semibold mb-2">ส่งสลิปทาง LINE พร้อมแจ้งรหัสรุ่น</p>' +
+        '<p class="text-[15px] text-ink-soft mb-4">พิมพ์ <span class="accession text-chula-dark">' + esc(BATCH.batchCode) + '</span> กำกับมาพร้อมรูปสลิป เจ้าหน้าที่จะยืนยันที่นั่งให้ทันที</p>' +
+        (oa.url ? '<a href="' + esc(oa.url) + '" target="_blank" rel="noopener" class="inline-block bg-[#06C755] text-white px-6 py-3 rounded-full font-display font-semibold text-[15px]">ส่งสลิปทาง LINE</a>' : '') +
+        '</div></li>' +
+
+      '<li class="flex gap-4">' +
+        '<span class="font-display font-semibold text-2xl text-chula-light shrink-0 w-8">3</span>' +
+        '<div><p class="font-display font-semibold mb-2">รอการยืนยันที่นั่ง</p>' +
+        '<p class="text-[15px] text-ink-soft">เจ้าหน้าที่จะติดต่อกลับภายในวันทำการ หากไม่ได้รับการติดต่อ โทร 096 323 6999</p>' +
+        '</div></li>' +
+    '</ol>' +
+
+    '<div class="border-t border-rule pt-6 flex flex-wrap gap-3">' +
+      '<a href="index.html" class="border border-chula text-chula-dark px-6 py-3 rounded-full font-display font-medium text-[15px]">กลับหน้าหลัก</a>' +
+      '<a href="index.html#programme" class="border border-rule px-6 py-3 rounded-full font-display font-medium text-[15px]">ดูรุ่นอื่น</a>' +
+    '</div>';
+  scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+</body>
+</html>
