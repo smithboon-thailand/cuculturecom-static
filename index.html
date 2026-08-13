@@ -108,6 +108,44 @@ tailwind.config = {
     .eyebrow::after{width:5rem}
   }
   @media (max-width:768px){ #heroVideo{display:none} }
+
+  /* ══ ปรับสำหรับมือถือ ══ */
+  @media (max-width:640px){
+    body{font-size:16px;line-height:1.8}
+
+    /* ทุกสิ่งที่กดได้ ต้องสูงอย่างน้อย 46px ตามมาตรฐาน accessibility
+       ใช้ min-height เพราะ Tailwind ไม่ได้ตั้งค่านี้ จึงไม่ถูกทับ */
+    a.rounded-full, button.rounded-full, .pill{
+      min-height:46px!important;
+      display:inline-flex!important;
+      align-items:center!important;
+      justify-content:center!important
+    }
+    a[href^="tel:"]{min-height:46px}
+
+    /* ลดระยะห่างระหว่าง section ไม่ให้ต้องเลื่อนนาน */
+    section{padding-top:3.25rem!important;padding-bottom:3.25rem!important}
+
+    /* หัวข้อไม่ให้ใหญ่เกินจอ */
+    h1{font-size:2rem!important;line-height:1.3!important}
+    h2{font-size:1.6rem!important;line-height:1.35!important}
+
+    /* ตารางรุ่น เรียงเป็นบล็อกอ่านง่าย */
+    .prow{padding-top:1.15rem;padding-bottom:1.15rem}
+    .prow:hover{padding-left:0}
+    .prow::before{display:none}
+
+    /* การ์ดหลักสูตร */
+    .card:hover{transform:none}
+    .card dt{width:5.5rem}
+  }
+
+  /* จอเล็กมาก */
+  @media (max-width:380px){
+    h1{font-size:1.75rem!important}
+    .accession{font-size:.75rem;padding:.1rem .4rem}
+  }
+
 </style>
 </head>
 <body>
@@ -117,11 +155,11 @@ tailwind.config = {
     <a href="#top" class="flex items-center gap-3 min-w-0">
       <img src="icon-clean.png" alt="" width="32" height="32" class="w-8 h-8 object-contain shrink-0" onerror="this.style.display='none'">
       <span class="min-w-0">
-        <span id="nav-t1" class="block font-display font-semibold text-[15px] leading-tight truncate transition-colors">สื่อสารเชิงวัฒนธรรม</span>
+        <span id="nav-t1" class="block font-display font-semibold text-base sm:text-[15px] leading-tight truncate transition-colors">สื่อสารเชิงวัฒนธรรม</span>
         <span id="nav-t2" class="block font-display text-[10px] tracking-[.18em] leading-tight transition-colors">CHULA CULTURE COM</span>
       </span>
     </a>
-    <div class="hidden md:flex items-center gap-7 text-[15px]" id="nav-links">
+    <div class="hidden md:flex items-center gap-7 text-base sm:text-[15px]" id="nav-links">
       <a href="#programme" class="transition-colors">ตารางรุ่น</a>
       <a href="#courses" class="transition-colors">หลักสูตร</a>
       <a href="#expert" class="transition-colors">วิทยากร</a>
@@ -162,25 +200,25 @@ tailwind.config = {
   </div>
 </section>
 
-<section id="programme" class="py-20 sm:py-28 bg-paper">
+<section id="programme" class="py-14 sm:py-20 lg:py-28 bg-paper">
   <div class="max-w-content mx-auto px-5 sm:px-8">
     <div class="rv flex flex-wrap items-end justify-between gap-6 mb-14">
       <div>
         <p class="eyebrow">ตารางรุ่น</p>
         <h2 class="font-display font-semibold text-3xl sm:text-[2.6rem]">รุ่นที่เปิดรับสมัครขณะนี้</h2>
       </div>
-      <p class="text-ink-soft max-w-sm text-[15px]">ทุกรุ่นมีรหัสกำกับ ใช้รหัสนี้ตอนแจ้งโอนเงิน เพื่อยืนยันที่นั่งได้ทันที</p>
+      <p class="text-ink-soft max-w-sm text-base sm:text-[15px]">ทุกรุ่นมีรหัสกำกับ ใช้รหัสนี้ตอนแจ้งโอนเงิน เพื่อยืนยันที่นั่งได้ทันที</p>
     </div>
     <div id="programme-list"></div>
   </div>
 </section>
 
-<section id="courses" class="py-20 sm:py-28 bg-white border-y border-rule">
+<section id="courses" class="py-14 sm:py-20 lg:py-28 bg-white border-y border-rule">
   <div class="max-w-content mx-auto px-5 sm:px-8">
     <div class="rv">
       <p class="eyebrow">หลักสูตร</p>
       <h2 class="font-display font-semibold text-3xl sm:text-[2.6rem] mb-3">หลักสูตรทั้งหมด</h2>
-      <p class="text-ink-soft mb-10 max-w-2xl text-[15px]">รวมหลักสูตรที่เปิดรับสมัคร จัดเป็นประจำ และที่จัดสำเร็จไปแล้ว</p>
+      <p class="text-ink-soft mb-10 max-w-2xl text-base sm:text-[15px]">รวมหลักสูตรที่เปิดรับสมัคร จัดเป็นประจำ และที่จัดสำเร็จไปแล้ว</p>
     </div>
     <div id="filters" class="flex flex-wrap gap-2.5 mb-12" role="group" aria-label="กรองหลักสูตร"></div>
     <div id="course-grid" class="grid gap-7 md:grid-cols-2 lg:grid-cols-3"></div>
@@ -188,7 +226,7 @@ tailwind.config = {
   </div>
 </section>
 
-<section id="expert" class="py-20 sm:py-28">
+<section id="expert" class="py-14 sm:py-20 lg:py-28">
   <div class="max-w-content mx-auto px-5 sm:px-8 grid lg:grid-cols-[minmax(0,22rem)_1fr] gap-12 lg:gap-16 items-start">
     <div class="rv relative">
       <span class="absolute -inset-3 border border-chula-light rounded-sm -z-10" aria-hidden="true"></span>
@@ -200,14 +238,14 @@ tailwind.config = {
       <h2 id="expert-name" class="font-display font-semibold text-2xl sm:text-[2rem] leading-snug"></h2>
       <ul id="expert-creds" class="mt-8 space-y-4"></ul>
       <div class="mt-10 pt-8 rule-t">
-        <p class="font-display font-medium text-[15px]" id="lead-name"></p>
+        <p class="font-display font-medium text-base sm:text-[15px]" id="lead-name"></p>
         <p class="text-ink-soft text-sm mt-1" id="lead-title"></p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="why" class="py-20 sm:py-28 bg-chula-pale relative overflow-hidden">
+<section id="why" class="py-14 sm:py-20 lg:py-28 bg-chula-pale relative overflow-hidden">
   <span class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-chula-light/40 blur-3xl" aria-hidden="true"></span>
   <div class="max-w-content mx-auto px-5 sm:px-8 relative">
     <div class="rv">
@@ -218,7 +256,7 @@ tailwind.config = {
   </div>
 </section>
 
-<section id="howto" class="py-20 sm:py-28 bg-white border-y border-rule">
+<section id="howto" class="py-14 sm:py-20 lg:py-28 bg-white border-y border-rule">
   <div class="max-w-content mx-auto px-5 sm:px-8">
     <div class="rv">
       <p class="eyebrow">การสมัคร</p>
@@ -228,11 +266,11 @@ tailwind.config = {
     <div class="rv grid lg:grid-cols-2 gap-8">
       <div class="border border-rule rounded-sm p-7">
         <h3 class="font-display font-semibold text-lg mb-5">ชำระค่าลงทะเบียน</h3>
-        <dl id="payment-details" class="space-y-3 text-[15px]"></dl>
+        <dl id="payment-details" class="space-y-3 text-base sm:text-[15px]"></dl>
       </div>
       <div class="bg-chula-pale border border-chula-light rounded-sm p-7">
         <h3 class="font-display font-semibold text-lg mb-4 text-chula-dark">อย่าลืมระบุรหัสรุ่น</h3>
-        <p class="text-[15px] leading-relaxed">แต่ละเดือนมีหลายหลักสูตรเปิดพร้อมกัน การพิมพ์รหัสรุ่นกำกับตอนส่งสลิป ทำให้เจ้าหน้าที่ยืนยันที่นั่งให้ท่านได้ทันที ไม่ต้องรอตรวจสอบ</p>
+        <p class="text-base sm:text-[15px] leading-relaxed">แต่ละเดือนมีหลายหลักสูตรเปิดพร้อมกัน การพิมพ์รหัสรุ่นกำกับตอนส่งสลิป ทำให้เจ้าหน้าที่ยืนยันที่นั่งให้ท่านได้ทันที ไม่ต้องรอตรวจสอบ</p>
         <p class="mt-5 text-sm text-ink-soft">ตัวอย่างรหัสรุ่น</p>
         <div class="mt-2 flex flex-wrap gap-2 text-chula-dark">
           <span class="accession">วัดวัง-ร10</span><span class="accession">ทัศน-อยุธยา-ร1</span><span class="accession">ขอมเขมร-ร1</span>
@@ -242,17 +280,17 @@ tailwind.config = {
   </div>
 </section>
 
-<section id="contact" class="py-20 sm:py-28">
+<section id="contact" class="py-14 sm:py-20 lg:py-28">
   <div class="max-w-content mx-auto px-5 sm:px-8">
     <div class="rv">
       <p class="eyebrow">ติดต่อ</p>
       <h2 class="font-display font-semibold text-3xl sm:text-[2.6rem] mb-4">สอบถามและสมัครเรียน</h2>
-      <p id="contact-org" class="text-ink-soft mb-12 text-[15px]"></p>
+      <p id="contact-org" class="text-ink-soft mb-12 text-base sm:text-[15px]"></p>
     </div>
     <div class="rv grid lg:grid-cols-[1fr_auto] gap-10 lg:gap-14 items-start">
       <div>
         <div id="contact-people" class="grid gap-6 sm:grid-cols-2"></div>
-        <p id="contact-address" class="mt-10 text-ink-soft text-[15px] max-w-lg"></p>
+        <p id="contact-address" class="mt-10 text-ink-soft text-base sm:text-[15px] max-w-lg"></p>
       </div>
       <div id="qr-box" class="justify-self-start lg:justify-self-end"></div>
     </div>
@@ -275,7 +313,7 @@ tailwind.config = {
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M12 2C6.5 2 2 5.7 2 10.2c0 4 3.6 7.4 8.4 8.05.33.07.78.22.9.5.1.26.07.66.03.92l-.14.87c-.05.26-.2 1.02.9.56 1.1-.46 5.9-3.48 8.05-5.95C21.6 13.5 22 11.9 22 10.2 22 5.7 17.5 2 12 2z"/>
   </svg>
-  <span class="text-[15px]">แอดไลน์ทางการ</span>
+  <span class="text-base sm:text-[15px]">แอดไลน์ทางการ</span>
 </a>
 
 <script>
@@ -327,7 +365,7 @@ function skeleton(){
 }
 function failure(){
   document.getElementById('course-grid').innerHTML =
-    '<div class="border border-rule rounded-sm p-10 text-center"><p class="font-display font-semibold text-lg mb-2">โหลดข้อมูลหลักสูตรไม่สำเร็จ</p><p class="text-ink-soft text-[15px] mb-6">กรุณารีเฟรชหน้าเว็บอีกครั้ง หรือติดต่อเจ้าหน้าที่โดยตรง</p><a href="tel:0963236999" class="inline-block bg-chula text-white px-6 py-3 rounded-full font-display font-medium">โทร 096 323 6999</a></div>';
+    '<div class="border border-rule rounded-sm p-10 text-center"><p class="font-display font-semibold text-lg mb-2">โหลดข้อมูลหลักสูตรไม่สำเร็จ</p><p class="text-ink-soft text-base sm:text-[15px] mb-6">กรุณารีเฟรชหน้าเว็บอีกครั้ง หรือติดต่อเจ้าหน้าที่โดยตรง</p><a href="tel:0963236999" class="inline-block bg-chula text-white px-6 py-3 rounded-full font-display font-medium">โทร 096 323 6999</a></div>';
   document.getElementById('programme-list').innerHTML = '';
 }
 
@@ -342,7 +380,7 @@ function renderProgramme(){
   rows.sort((a,b) => a.dateStart.localeCompare(b.dateStart));
   const box = document.getElementById('programme-list');
   if (!rows.length){
-    box.innerHTML = '<div class="border border-rule rounded-sm p-10"><p class="font-display font-semibold text-lg mb-2">ยังไม่มีรุ่นที่ประกาศกำหนดการ</p><p class="text-ink-soft text-[15px] mb-6">ติดต่อเจ้าหน้าที่เพื่อสอบถามรุ่นถัดไปได้เลย</p><a href="#contact" class="btn-sheen inline-block bg-chula text-white px-6 py-3 rounded-full font-display font-medium">ติดต่อสอบถาม</a></div>';
+    box.innerHTML = '<div class="border border-rule rounded-sm p-10"><p class="font-display font-semibold text-lg mb-2">ยังไม่มีรุ่นที่ประกาศกำหนดการ</p><p class="text-ink-soft text-base sm:text-[15px] mb-6">ติดต่อเจ้าหน้าที่เพื่อสอบถามรุ่นถัดไปได้เลย</p><a href="#contact" class="btn-sheen inline-block bg-chula text-white px-6 py-3 rounded-full font-display font-medium">ติดต่อสอบถาม</a></div>';
     return;
   }
   const groups = {};
@@ -361,7 +399,7 @@ function renderProgramme(){
         '<p class="text-ink-soft text-sm mt-1">' + esc(r.time) + ' · ' + esc(r.course.capacityLabel) + (r.note ? ' · '+esc(r.note) : '') + '</p></div>' +
         '<div class="flex items-center gap-4 sm:justify-end"><span class="accession text-chula-dark shrink-0">' + esc(r.batchCode) + '</span>' +
         '<span class="font-display font-semibold text-lg whitespace-nowrap">' + esc(r.course.priceLabel) + '</span>' +
-        '<a href="register.html?batch=' + encodeURIComponent(r.batchCode) + '" class="btn-sheen bg-chula text-white px-4 py-2 rounded-full font-display font-medium text-[15px] hover:bg-chula-dark transition whitespace-nowrap">สมัคร</a>' +
+        '<a href="register.html?batch=' + encodeURIComponent(r.batchCode) + '" class="btn-sheen bg-chula text-white px-5 py-3 sm:py-2 rounded-full font-display font-medium text-base sm:text-[15px] hover:bg-chula-dark transition whitespace-nowrap">สมัคร</a>' +
         '</div></li>').join('') +
     '</ul></div>').join('');
   watch(box);
@@ -371,7 +409,7 @@ const FILTERS = [{id:'all',label:'ทั้งหมด'},{id:'recruiting',label
 function renderFilters(){
   document.getElementById('filters').innerHTML = FILTERS.map(f => {
     const on = activeFilter === f.id;
-    return '<button type="button" data-filter="' + f.id + '" aria-pressed="' + on + '" class="pill px-5 py-2.5 rounded-full font-display font-medium text-[15px] border ' +
+    return '<button type="button" data-filter="' + f.id + '" aria-pressed="' + on + '" class="pill px-5 py-2.5 rounded-full font-display font-medium text-base sm:text-[15px] border ' +
       (on ? 'bg-chula text-white border-chula shadow-md shadow-chula/25' : 'border-chula-light text-chula-dark hover:bg-chula-pale') + '">' + esc(f.label) + '</button>';
   }).join('');
 }
@@ -392,22 +430,22 @@ function renderCourses(){
     const batchBlock = done
       ? '<p class="text-ink-faint text-sm">จัดเมื่อ ' + esc((c.batches&&c.batches[0]&&c.batches[0].dates)||'') + '</p>'
       : live.length
-        ? '<ul class="space-y-2">' + live.map(b => '<li class="flex items-baseline justify-between gap-3 text-[15px]"><span>รุ่น ' + esc(b.batchNo) + ' · ' + esc(b.dates) + '</span><span class="accession text-chula-dark shrink-0">' + esc(b.batchCode) + '</span></li>').join('') + '</ul>'
-        : '<p class="text-ink-soft text-[15px]">รอประกาศกำหนดการรุ่นถัดไป</p>';
+        ? '<ul class="space-y-2">' + live.map(b => '<li class="flex items-baseline justify-between gap-3 text-base sm:text-[15px]"><span>รุ่น ' + esc(b.batchNo) + ' · ' + esc(b.dates) + '</span><span class="accession text-chula-dark shrink-0">' + esc(b.batchCode) + '</span></li>').join('') + '</ul>'
+        : '<p class="text-ink-soft text-base sm:text-[15px]">รอประกาศกำหนดการรุ่นถัดไป</p>';
     const action = done
-      ? '<span class="text-ink-faint text-[15px]">จัดเสร็จสิ้นแล้ว</span>'
+      ? '<span class="text-ink-faint text-base sm:text-[15px]">จัดเสร็จสิ้นแล้ว</span>'
       : live.length
-        ? '<a href="register.html?batch=' + encodeURIComponent(live[0].batchCode) + '" class="btn-sheen bg-chula text-white px-5 py-2.5 rounded-full font-display font-medium text-[15px] hover:bg-chula-dark transition">สมัครเรียน</a>'
-        : '<a href="#contact" class="btn-sheen bg-chula text-white px-5 py-2.5 rounded-full font-display font-medium text-[15px] hover:bg-chula-dark transition">สอบถามรุ่นถัดไป</a>';
+        ? '<a href="register.html?batch=' + encodeURIComponent(live[0].batchCode) + '" class="btn-sheen bg-chula text-white px-5 py-2.5 rounded-full font-display font-medium text-base sm:text-[15px] hover:bg-chula-dark transition">สมัครเรียน</a>'
+        : '<a href="#contact" class="btn-sheen bg-chula text-white px-5 py-2.5 rounded-full font-display font-medium text-base sm:text-[15px] hover:bg-chula-dark transition">สอบถามรุ่นถัดไป</a>';
     return '<article id="course-' + esc(c.id) + '" class="rv card border border-rule rounded-sm overflow-hidden bg-white flex flex-col ' + (done?'opacity-70':'') + '" style="transition-delay:' + (Math.min(i,5)*70) + 'ms">' +
       '<div class="shot relative"><img src="' + esc(c.image) + '" alt="ภาพประกอบหลักสูตร ' + esc(c.shortTitle) + '" width="1200" height="675" loading="lazy" class="w-full aspect-[16/9] object-cover bg-chula-pale ' + (done?'grayscale':'') + '" onerror="this.onerror=null;this.src=\'' + PLACEHOLDER + '\'">' +
       '<span class="absolute top-3 right-3 ' + st.cls + ' text-white text-xs font-display font-medium px-3 py-1.5 rounded-full shadow-sm">' + esc(st.label) + '</span></div>' +
       '<div class="p-6 flex flex-col flex-1">' +
       '<div class="flex items-center gap-2.5 mb-4"><span class="text-[11px] font-display font-medium tracking-wide text-ink-faint">' + esc(c.categoryLabel) + '</span><span class="accession text-ink-faint">' + esc(c.code) + '</span></div>' +
       '<h3 class="font-display font-semibold text-xl leading-snug mb-3">' + esc(c.shortTitle) + '</h3>' +
-      '<p class="text-ink-soft text-[15px] leading-relaxed mb-5">' + esc(c.description) + '</p>' +
-      (c.highlights && c.highlights.length ? '<ul class="mb-5 space-y-1.5">' + c.highlights.map(h => '<li class="text-[15px] pl-4 relative before:content-[\'\'] before:absolute before:left-0 before:top-[.7em] before:w-1.5 before:h-1.5 before:bg-chula-light before:rounded-full">' + esc(h) + '</li>').join('') + '</ul>' : '') +
-      '<dl class="text-[15px] space-y-1.5 mb-5 pt-5 rule-t">' +
+      '<p class="text-ink-soft text-base sm:text-[15px] leading-relaxed mb-5">' + esc(c.description) + '</p>' +
+      (c.highlights && c.highlights.length ? '<ul class="mb-5 space-y-1.5">' + c.highlights.map(h => '<li class="text-base sm:text-[15px] pl-4 relative before:content-[\'\'] before:absolute before:left-0 before:top-[.7em] before:w-1.5 before:h-1.5 before:bg-chula-light before:rounded-full">' + esc(h) + '</li>').join('') + '</ul>' : '') +
+      '<dl class="text-base sm:text-[15px] space-y-1.5 mb-5 pt-5 rule-t">' +
       '<div class="flex gap-2"><dt class="text-ink-faint w-20 shrink-0">ระยะเวลา</dt><dd>' + esc(c.duration) + '</dd></div>' +
       '<div class="flex gap-2"><dt class="text-ink-faint w-20 shrink-0">จำนวน</dt><dd>' + esc(c.capacityLabel) + '</dd></div>' +
       '<div class="flex gap-2"><dt class="text-ink-faint w-20 shrink-0">สถานที่</dt><dd>' + esc(c.venue) + '</dd></div>' +
@@ -425,7 +463,7 @@ function renderConfig(){
         howto = CONFIG.howto, payment = CONFIG.payment, contact = CONFIG.contact;
   document.getElementById('expert-name').textContent = expert.name;
   document.getElementById('expert-creds').innerHTML = expert.credentials.map(c =>
-    '<li class="pl-5 relative text-[15px] leading-relaxed before:content-[\'\'] before:absolute before:left-0 before:top-[.75em] before:w-2 before:h-px before:bg-chula">' + esc(c) + '</li>').join('');
+    '<li class="pl-5 relative text-base sm:text-[15px] leading-relaxed before:content-[\'\'] before:absolute before:left-0 before:top-[.75em] before:w-2 before:h-px before:bg-chula">' + esc(c) + '</li>').join('');
   const ei = document.getElementById('expert-img');
   ei.onerror = function(){ ei.onerror = null; ei.src = PLACEHOLDER; };
   document.getElementById('lead-name').textContent = projectLead.name + ' · ' + projectLead.title;
@@ -434,12 +472,12 @@ function renderConfig(){
   document.getElementById('why-list').innerHTML = why.map((w,i) =>
     '<div class="rv" style="transition-delay:' + (i*110) + 'ms"><span class="block w-8 h-px bg-chula mb-5"></span>' +
     '<h3 class="font-display font-semibold text-xl mb-3">' + esc(w.title) + '</h3>' +
-    '<p class="text-ink-soft text-[15px] leading-relaxed">' + esc(w.body) + '</p></div>').join('');
+    '<p class="text-ink-soft text-base sm:text-[15px] leading-relaxed">' + esc(w.body) + '</p></div>').join('');
 
   document.getElementById('howto-list').innerHTML = howto.map((h,i) =>
     '<li class="rv" style="transition-delay:' + (i*90) + 'ms"><p class="font-display font-semibold text-4xl text-chula-light mb-3">' + (i+1) + '</p>' +
     '<h3 class="font-display font-semibold text-[17px] mb-2 leading-snug">' + esc(h.title) + '</h3>' +
-    '<p class="text-ink-soft text-[15px] leading-relaxed">' + esc(h.body) + '</p></li>').join('');
+    '<p class="text-ink-soft text-base sm:text-[15px] leading-relaxed">' + esc(h.body) + '</p></li>').join('');
 
   document.getElementById('payment-details').innerHTML =
     '<div class="flex gap-3"><dt class="text-ink-faint w-24 shrink-0">ธนาคาร</dt><dd>' + esc(payment.bank) + '</dd></div>' +
@@ -451,21 +489,21 @@ function renderConfig(){
   document.getElementById('contact-people').innerHTML = contact.people.map(p =>
     '<div class="border border-rule rounded-sm p-6 hover:border-chula-light transition-colors">' +
     '<p class="font-display font-semibold text-[17px] mb-4">' + esc(p.name) + '</p><div class="flex flex-wrap gap-2.5">' +
-    '<a href="tel:' + esc(p.phone) + '" class="btn-sheen bg-chula text-white px-5 py-2.5 rounded-full font-display font-medium text-[15px] hover:bg-chula-dark transition">โทร ' + esc(p.phoneLabel) + '</a>' +
-    (p.line ? '<a href="https://line.me/ti/p/~' + esc(p.line) + '" target="_blank" rel="noopener" class="border border-chula text-chula-dark px-5 py-2.5 rounded-full font-display font-medium text-[15px] hover:bg-chula-pale transition">ไลน์ ' + esc(p.line) + '</a>' : '') +
+    '<a href="tel:' + esc(p.phone) + '" class="btn-sheen bg-chula text-white px-5 py-2.5 rounded-full font-display font-medium text-base sm:text-[15px] hover:bg-chula-dark transition">โทร ' + esc(p.phoneLabel) + '</a>' +
+    (p.line ? '<a href="https://line.me/ti/p/~' + esc(p.line) + '" target="_blank" rel="noopener" class="border border-chula text-chula-dark px-5 py-2.5 rounded-full font-display font-medium text-base sm:text-[15px] hover:bg-chula-pale transition">ไลน์ ' + esc(p.line) + '</a>' : '') +
     '</div></div>').join('');
 
   const oa = contact.lineOA;
   document.getElementById('qr-box').innerHTML = oa ?
     '<div class="border-2 border-[#06C755]/30 rounded-sm p-7 bg-white text-center w-[17.5rem] shadow-lg shadow-[#06C755]/10">' +
     '<div class="flex items-center justify-center gap-2 mb-1"><svg width="20" height="20" viewBox="0 0 24 24" fill="#06C755" aria-hidden="true"><path d="M12 2C6.5 2 2 5.7 2 10.2c0 4 3.6 7.4 8.4 8.05.33.07.78.22.9.5.1.26.07.66.03.92l-.14.87c-.05.26-.2 1.02.9.56 1.1-.46 5.9-3.48 8.05-5.95C21.6 13.5 22 11.9 22 10.2 22 5.7 17.5 2 12 2z"/></svg>' +
-    '<span class="font-display font-semibold text-[15px]">LINE Official Account</span></div>' +
+    '<span class="font-display font-semibold text-base sm:text-[15px]">LINE Official Account</span></div>' +
     '<p class="text-ink-soft text-sm mb-5">' + esc(oa.label) + '</p>' +
     '<a href="' + esc(oa.url) + '" target="_blank" rel="noopener" class="block group">' +
     '<img src="' + esc(oa.image) + '" alt="คิวอาร์โค้ดสำหรับแอดไลน์ทางการ ' + esc(oa.name) + '" width="200" height="200" loading="lazy" class="w-full max-w-[11.5rem] mx-auto transition-transform duration-500 group-hover:scale-[1.05]"></a>' +
     '<p class="mt-5 font-display font-medium">' + esc(oa.name) + '</p>' +
     '<p class="text-ink-faint text-sm">' + esc(oa.accountId) + '</p>' +
-    '<a href="' + esc(oa.url) + '" target="_blank" rel="noopener" class="btn-sheen mt-5 inline-block w-full bg-[#06C755] text-white px-5 py-3 rounded-full font-display font-semibold text-[15px] hover:brightness-110 transition">แอดไลน์ทางการ</a>' +
+    '<a href="' + esc(oa.url) + '" target="_blank" rel="noopener" class="btn-sheen mt-5 inline-block w-full bg-[#06C755] text-white px-5 py-3 rounded-full font-display font-semibold text-base sm:text-[15px] hover:brightness-110 transition">แอดไลน์ทางการ</a>' +
     '<p class="mt-3 text-ink-faint text-xs leading-relaxed">เปิดจากมือถือ กดปุ่มได้เลย<br>เปิดจากคอมพิวเตอร์ ใช้มือถือสแกน</p></div>' : '';
 }
 
