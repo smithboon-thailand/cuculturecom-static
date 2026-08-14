@@ -172,11 +172,11 @@ tailwind.config = {
 
 <section id="top" class="relative min-h-[92vh] flex items-center pt-16 overflow-hidden bg-[#3A1428]">
   <video id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="hero-fallback.jpg"
-         class="absolute inset-0 w-full h-full object-cover opacity-55">
+         class="absolute inset-0 w-full h-full object-cover opacity-80">
     <source src="promo_hero.mp4" type="video/mp4">
   </video>
   <div class="mesh" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-[#1A0A12]/85 via-[#3A1428]/45 to-[#3A1428]/60"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-[#1A0A12]/75 via-[#3A1428]/25 to-[#3A1428]/35"></div>
 
   <div id="hero-inner" class="relative max-w-content mx-auto px-5 sm:px-8 py-24 w-full will-change-transform">
     <span class="line-mask"><span class="line-in d1 font-display text-[11px] sm:text-xs tracking-[.28em] text-chula-light block">
@@ -325,7 +325,7 @@ const STATUS = {
   ongoing:   {label:'จัดเป็นประจำ',    cls:'bg-ongoing',    order:3},
   completed: {label:'จัดเสร็จสิ้นแล้ว', cls:'bg-completed',  order:4}
 };
-const esc = s => String(s??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const esc = s => String(s??'').replace(/[&<>"']/g, c => ({'&':'&','<':'<','>':'>','"':'"',"'":'&#39;'}[c]));
 const today = new Date(); today.setHours(0,0,0,0);
 let COURSES = [], CONFIG = {}, activeFilter = 'all';
 
@@ -485,7 +485,6 @@ function renderConfig(){
     '<div class="flex gap-3"><dt class="text-ink-faint w-24 shrink-0">เลขที่บัญชี</dt><dd class="font-display font-semibold text-lg tracking-wide">' + esc(payment.accountNumber) + '</dd></div>';
 
   document.getElementById('contact-org').textContent = contact.org + ' · ' + contact.hours;
-  document.getElementById('contact-address').textContent = contact.address;
   document.getElementById('contact-people').innerHTML = contact.people.map(p =>
     '<div class="border border-rule rounded-sm p-6 hover:border-chula-light transition-colors">' +
     '<p class="font-display font-semibold text-[17px] mb-4">' + esc(p.name) + '</p><div class="flex flex-wrap gap-2.5">' +
