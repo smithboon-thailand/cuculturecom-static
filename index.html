@@ -109,7 +109,6 @@ tailwind.config = {
   }
   @media (max-width:768px){ #heroVideo{display:none} }
 
-  /* ══ ปรับสำหรับมือถือ ══ */
   @media (max-width:640px){
     body{font-size:16px;line-height:1.8}
 
@@ -278,14 +277,16 @@ tailwind.config = {
     <div class="rv">
       <p class="eyebrow">ติดต่อ</p>
       <h2 class="font-display font-semibold text-3xl sm:text-[2.6rem] mb-4">สอบถามและสมัครเรียน</h2>
-      <p id="contact-org" class="text-ink-soft mb-12 text-base sm:text-[15px]"></p>
+      <p id="contact-org" class="text-ink-soft mb-10 text-base sm:text-[15px]"></p>
     </div>
-    <div class="rv grid lg:grid-cols-[1fr_auto] gap-10 lg:gap-14 items-start">
-      <div>
-        <div id="contact-people" class="grid gap-6 sm:grid-cols-2"></div>
-        <p id="contact-address" class="mt-10 text-ink-soft text-base sm:text-[15px] max-w-lg"></p>
+
+    <!-- Layout ใหม่: กระชับ สมดุล ไม่โล่ง -->
+    <div class="rv grid md:grid-cols-2 gap-6 lg:gap-8 items-stretch max-w-3xl">
+      <div class="flex flex-col gap-5">
+        <div id="contact-people"></div>
+        <p id="contact-address" class="text-ink-soft text-base sm:text-[15px] leading-relaxed"></p>
       </div>
-      <div id="qr-box" class="justify-self-start lg:justify-self-end"></div>
+      <div id="qr-box" class="h-full"></div>
     </div>
   </div>
 </section>
@@ -478,25 +479,35 @@ function renderConfig(){
     '<div class="flex gap-3"><dt class="text-ink-faint w-24 shrink-0">เลขที่บัญชี</dt><dd class="font-display font-semibold text-lg tracking-wide">' + esc(payment.accountNumber) + '</dd></div>';
 
   document.getElementById('contact-org').textContent = contact.org + ' · ' + contact.hours;
+
+  // การ์ดติดต่อแบบใหม่ — มี label และดูมีน้ำหนักมากขึ้น
   document.getElementById('contact-people').innerHTML = contact.people.map(p =>
-    '<div class="border border-rule rounded-sm p-6 hover:border-chula-light transition-colors">' +
-    '<p class="font-display font-semibold text-[17px] mb-4">' + esc(p.name) + '</p><div class="flex flex-wrap gap-2.5">' +
-    '<a href="tel:' + esc(p.phone) + '" class="btn-sheen bg-chula text-white px-5 py-2.5 rounded-full font-display font-medium text-base sm:text-[15px] hover:bg-chula-dark transition">โทร ' + esc(p.phoneLabel) + '</a>' +
-    (p.line ? '<a href="https://line.me/ti/p/~' + esc(p.line) + '" target="_blank" rel="noopener" class="border border-chula text-chula-dark px-5 py-2.5 rounded-full font-display font-medium text-base sm:text-[15px] hover:bg-chula-pale transition">ไลน์ ' + esc(p.line) + '</a>' : '') +
-    '</div></div>').join('');
+    '<div class="border border-rule rounded-sm p-7 bg-white hover:border-chula-light transition-colors h-full">' +
+    '<p class="text-[11px] font-display font-medium tracking-wide text-chula-dark mb-2">เจ้าหน้าที่รับสมัคร</p>' +
+    '<p class="font-display font-semibold text-xl mb-5">' + esc(p.name) + '</p>' +
+    '<a href="tel:' + esc(p.phone) + '" class="btn-sheen inline-flex items-center gap-2 bg-chula text-white px-6 py-3 rounded-full font-display font-medium text-base sm:text-[15px] hover:bg-chula-dark transition">โทร ' + esc(p.phoneLabel) + '</a>' +
+    (p.line ? '<a href="https://line.me/ti/p/~' + esc(p.line) + '" target="_blank" rel="noopener" class="mt-3 inline-block border border-chula text-chula-dark px-5 py-2.5 rounded-full font-display font-medium text-base sm:text-[15px] hover:bg-chula-pale transition">ไลน์ ' + esc(p.line) + '</a>' : '') +
+    '</div>'
+  ).join('');
+
+  document.getElementById('contact-address').textContent = contact.address;
 
   const oa = contact.lineOA;
   document.getElementById('qr-box').innerHTML = oa ?
-    '<div class="border-2 border-[#06C755]/30 rounded-sm p-7 bg-white text-center w-[17.5rem] shadow-lg shadow-[#06C755]/10">' +
+    '<div class="border-2 border-[#06C755]/30 rounded-sm p-7 bg-white text-center h-full flex flex-col justify-between shadow-lg shadow-[#06C755]/10">' +
+    '<div>' +
     '<div class="flex items-center justify-center gap-2 mb-1"><svg width="20" height="20" viewBox="0 0 24 24" fill="#06C755" aria-hidden="true"><path d="M12 2C6.5 2 2 5.7 2 10.2c0 4 3.6 7.4 8.4 8.05.33.07.78.22.9.5.1.26.07.66.03.92l-.14.87c-.05.26-.2 1.02.9.56 1.1-.46 5.9-3.48 8.05-5.95C21.6 13.5 22 11.9 22 10.2 22 5.7 17.5 2 12 2z"/></svg>' +
     '<span class="font-display font-semibold text-base sm:text-[15px]">LINE Official Account</span></div>' +
     '<p class="text-ink-soft text-sm mb-5">' + esc(oa.label) + '</p>' +
     '<a href="' + esc(oa.url) + '" target="_blank" rel="noopener" class="block group">' +
-    '<img src="' + esc(oa.image) + '" alt="คิวอาร์โค้ดสำหรับแอดไลน์ทางการ ' + esc(oa.name) + '" width="200" height="200" loading="lazy" class="w-full max-w-[11.5rem] mx-auto transition-transform duration-500 group-hover:scale-[1.05]"></a>' +
-    '<p class="mt-5 font-display font-medium">' + esc(oa.name) + '</p>' +
+    '<img src="' + esc(oa.image) + '" alt="คิวอาร์โค้ดสำหรับแอดไลน์ทางการ ' + esc(oa.name) + '" width="200" height="200" loading="lazy" class="w-full max-w-[10.5rem] mx-auto transition-transform duration-500 group-hover:scale-[1.05]"></a>' +
+    '<p class="mt-4 font-display font-medium">' + esc(oa.name) + '</p>' +
     '<p class="text-ink-faint text-sm">' + esc(oa.accountId) + '</p>' +
-    '<a href="' + esc(oa.url) + '" target="_blank" rel="noopener" class="btn-sheen mt-5 inline-block w-full bg-[#06C755] text-white px-5 py-3 rounded-full font-display font-semibold text-base sm:text-[15px] hover:brightness-110 transition">แอดไลน์ทางการ</a>' +
-    '<p class="mt-3 text-ink-faint text-xs leading-relaxed">เปิดจากมือถือ กดปุ่มได้เลย<br>เปิดจากคอมพิวเตอร์ ใช้มือถือสแกน</p></div>' : '';
+    '</div>' +
+    '<div class="mt-5">' +
+    '<a href="' + esc(oa.url) + '" target="_blank" rel="noopener" class="btn-sheen inline-block w-full bg-[#06C755] text-white px-5 py-3 rounded-full font-display font-semibold text-base sm:text-[15px] hover:brightness-110 transition">แอดไลน์ทางการ</a>' +
+    '<p class="mt-3 text-ink-faint text-xs leading-relaxed">เปิดจากมือถือ กดปุ่มได้เลย<br>เปิดจากคอมพิวเตอร์ ใช้มือถือสแกน</p>' +
+    '</div></div>' : '';
 }
 
 (async function(){
